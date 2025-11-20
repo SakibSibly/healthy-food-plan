@@ -13,6 +13,7 @@ const Inventory = () => {
     category: '',
     expirationDate: '',
     notes: '',
+    cost: '',
   });
 
   useEffect(() => {
@@ -38,11 +39,21 @@ const Inventory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Transform data to match backend expectations (snake_case)
+      const backendData = {
+        name: formData.name,
+        category: formData.category || null,
+        quantity: parseFloat(formData.quantity) || 0,
+        cost: parseFloat(formData.cost) || 0,
+        expiration_date: formData.expirationDate || null,
+        notes: formData.notes || null,
+      };
+
       if (editingItem) {
-        await inventoryAPI.updateItem(editingItem.id, formData);
+        await inventoryAPI.updateItem(editingItem.id, backendData);
         setEditingItem(null);
       } else {
-        await inventoryAPI.createItem(formData);
+        await inventoryAPI.createItem(backendData);
       }
       setFormData({
         name: '',
@@ -50,11 +61,13 @@ const Inventory = () => {
         category: '',
         expirationDate: '',
         notes: '',
+        cost: '',
       });
       setShowForm(false);
       loadInventory();
     } catch (error) {
       console.error('Failed to save item:', error);
+      alert('Failed to save item: ' + (error.response?.data?.detail || error.message));
     }
   };
 
@@ -64,8 +77,9 @@ const Inventory = () => {
       name: item.name,
       quantity: item.quantity,
       category: item.category,
-      expirationDate: item.expirationDate || '',
+      expirationDate: item.expiration_date || '',
       notes: item.notes || '',
+      cost: item.cost || '',
     });
     setShowForm(true);
   };
@@ -96,15 +110,15 @@ const Inventory = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="flex items-center justify-between page-header">
+      <div className="flex items-center justify-between bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-accent-200">
         <div>
           <div className="flex items-center space-x-4 mb-3">
-            <div className="icon-circle bg-green-100 text-green-600 w-16 h-16 text-3xl">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center text-4xl shadow-xl">
               <span>📦</span>
             </div>
-            <h1 className="text-4xl font-bold text-gray-900">Food Inventory</h1>
+            <h1 className="text-5xl font-bold text-neutral-800 tracking-tight">Food Inventory</h1>
           </div>
-          <p className="text-gray-600 text-lg ml-20">Manage your household food items and track expiration</p>
+          <p className="text-neutral-600 text-xl ml-20">Manage your household food items and track expiration</p>
         </div>
         <button
           onClick={() => {
@@ -116,26 +130,27 @@ const Inventory = () => {
               category: '',
               expirationDate: '',
               notes: '',
+              cost: '',
             });
           }}
-          className={showForm ? 'btn-secondary' : 'btn-primary'}
+          className={showForm ? 'btn-secondary text-lg px-6 py-3' : 'btn-primary text-lg px-6 py-3'}
         >
           {showForm ? '✕ Cancel' : '+ Add Item'}
         </button>
       </div>
 
       {showForm && (
-        <div className="card mb-6 border-2 border-primary-100">
+        <div className="card mb-6 animate-slide-down border-2 border-accent-200">
           <div className="flex items-center space-x-2 mb-6">
             <span className="text-2xl">{editingItem ? '✏️' : '➕'}</span>
-            <h2 className="text-xl font-bold text-gray-900">
+            <h2 className="text-2xl font-bold text-neutral-900">
               {editingItem ? 'Edit Item' : 'New Inventory Item'}
             </h2>
           </div>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <div className="form-group">
+                <label className="form-label">
                   Item Name *
                 </label>
                 <input
@@ -155,8 +170,8 @@ const Inventory = () => {
                 </datalist>
               </div>
 
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <div className="form-group">
+                <label className="form-label">
                   Category *
                 </label>
                 <select
@@ -175,8 +190,8 @@ const Inventory = () => {
                 </select>
               </div>
 
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <div className="form-group">
+                <label className="form-label">
                   Quantity *
                 </label>
                 <input
@@ -192,8 +207,24 @@ const Inventory = () => {
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <div className="form-group">
+                <label className="form-label">
+                  Cost ($)
+                </label>
+                <input
+                  type="number"
+                  name="cost"
+                  value={formData.cost}
+                  onChange={handleChange}
+                  min="0"
+                  step="0.01"
+                  className="input-field"
+                  placeholder="0.00"
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">
                   Expiration Date
                 </label>
                 <input
@@ -205,8 +236,8 @@ const Inventory = () => {
                 />
               </div>
 
-              <div className="md:col-span-2">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <div className="md:col-span-2 form-group">
+                <label className="form-label">
                   Notes (Optional)
                 </label>
                 <textarea
@@ -235,6 +266,7 @@ const Inventory = () => {
                     category: '',
                     expirationDate: '',
                     notes: '',
+                    cost: '',
                   });
                 }}
                 className="btn-secondary"
@@ -250,7 +282,7 @@ const Inventory = () => {
       <div className="card mb-6">
         <div className="flex items-center space-x-4">
           <span className="text-xl">🔍</span>
-          <label className="text-sm font-semibold text-gray-700">Filter by Category:</label>
+          <label className="text-sm font-semibold text-neutral-700">Filter by Category:</label>
           <select
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
@@ -273,16 +305,16 @@ const Inventory = () => {
 
       {/* Inventory List */}
       <div className="card">
-        <div className="section-header pb-4 border-b border-gray-100">
-          <div className="icon-circle bg-green-100 text-green-600">
+        <div className="flex items-center space-x-3 pb-6 border-b-2 border-primary-100 mb-6">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center text-3xl shadow-lg">
             <span>📋</span>
           </div>
-          <h2 className="text-xl font-bold text-gray-900">
+          <h2 className="text-2xl font-bold text-neutral-900">
             Inventory Items <span className="text-primary-600">({filteredInventory.length})</span>
           </h2>
         </div>
         {filteredInventory.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredInventory.map((item) => {
               const daysUntilExp = getDaysUntilExpiration(item.expirationDate);
               const isExpiringSoon = daysUntilExp !== null && daysUntilExp <= 7 && daysUntilExp > 0;
@@ -291,21 +323,21 @@ const Inventory = () => {
               return (
                 <div
                   key={item.id}
-                  className={`border-2 rounded-xl p-5 transition-all hover:shadow-lg ${
+                  className={`border-2 rounded-2xl p-6 transition-all hover:shadow-xl flex flex-col ${
                     isExpired
                       ? 'border-red-300 bg-red-50'
                       : isExpiringSoon
                       ? 'border-yellow-300 bg-yellow-50'
-                      : 'border-gray-100 bg-white hover:border-primary-200'
+                      : 'border-neutral-200 bg-white hover:border-primary-300'
                   }`}
                 >
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="font-bold text-gray-900 text-lg">{item.name}</h3>
-                    <span className="badge bg-primary-100 text-primary-800">
+                  <div className="flex items-start justify-between mb-4">
+                    <h3 className="font-bold text-neutral-900 text-xl flex-1 pr-2">{item.name}</h3>
+                    <span className="badge bg-gradient-to-r from-accent-500 to-accent-600 text-white text-xs flex-shrink-0">
                       {item.category}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-700 font-semibold mb-3">📊 Quantity: {item.quantity}</p>
+                  <p className="text-sm text-neutral-700 font-semibold mb-4">📊 Quantity: <span className="text-primary-600 text-lg">{item.quantity}</span></p>
                   {item.expirationDate && (
                     <div className="text-sm mb-3 p-3 bg-white rounded-lg border border-gray-100">
                       <p className="text-gray-600 mb-1">
@@ -327,17 +359,17 @@ const Inventory = () => {
                     </div>
                   )}
                   {item.notes && (
-                    <p className="text-sm text-gray-600 italic mb-3 p-3 bg-white rounded-lg border border-gray-100">
+                    <p className="text-sm text-neutral-600 italic mb-4 p-3 bg-white rounded-lg border border-neutral-100">
                       💬 {item.notes}
                     </p>
                   )}
-                  <div className="flex space-x-2 pt-2 border-t border-gray-200">
-                    <button onClick={() => handleEdit(item)} className="btn-secondary text-xs flex-1">
+                  <div className="flex gap-3 pt-4 border-t-2 border-neutral-200 mt-auto">
+                    <button onClick={() => handleEdit(item)} className="btn-secondary text-sm py-2.5 px-5 flex-1">
                       ✏️ Edit
                     </button>
                     <button
                       onClick={() => handleDelete(item.id)}
-                      className="btn-danger text-xs flex-1"
+                      className="btn-danger text-sm py-2.5 px-5 flex-1"
                     >
                       🗑️ Delete
                     </button>

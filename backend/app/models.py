@@ -21,6 +21,7 @@ class User(UserBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True, index=True)
     hashed_password: str = Field(default=None, max_length=256)
     inventory_items: list["InventoryItem"] = Relationship(back_populates="user", sa_relationship_kwargs={"lazy": "joined"})
+    food_logs: list["FoodLog"] = Relationship(back_populates="user", sa_relationship_kwargs={"lazy": "joined"})
 
 
 class UserWithInventory(UserBase):
@@ -69,3 +70,20 @@ class TokenRefresh(SQLModel):
 class TokenBlacklist(SQLModel, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True, index=True)
     token: str = Field(index=True, unique=True)
+
+
+class FoodLogBase(SQLModel):
+    item_name: str = Field(max_length=100)
+    quantity: float = Field(ge=0.0)
+    unit: str = Field(max_length=50)
+    category: str = Field(max_length=50)
+    notes: str | None = Field(default=None, max_length=500)
+    consumed_at: str | None = Field(default=None, max_length=30)
+    inventory_item_id: uuid.UUID | None = Field(default=None, foreign_key="inventoryitem.id", ondelete="SET NULL")
+
+
+class FoodLog(FoodLogBase, table=True):
+    id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True, index=True)
+    user_id: uuid.UUID = Field(foreign_key="user.id", ondelete="CASCADE")
+    created_at: str = Field(max_length=30)
+    user: User | None = Relationship(back_populates="food_logs", sa_relationship_kwargs={"lazy": "joined"})

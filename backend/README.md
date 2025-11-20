@@ -15,7 +15,7 @@ cd healthy-food-plan/backend
 
 2. Install dependencies using uv:
 ```bash
-uv sync
+uv sync 
 ```
 
 ## Running the Project

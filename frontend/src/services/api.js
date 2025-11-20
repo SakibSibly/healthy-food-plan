@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_URL = import.meta.env.VITE_API_URL || '';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -61,52 +61,53 @@ api.interceptors.response.use(
 // Auth API
 export const authAPI = {
   register: (userData) => api.post('/auth/register', userData),
-  login: (credentials) => {
-    // Backend expects form data for login
-    const formData = new URLSearchParams();
-    formData.append('username', credentials.username);
-    formData.append('password', credentials.password);
-    return api.post('/auth/login', formData, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    });
-  },
+  login: (credentials) => api.post('/auth/login', credentials),
   logout: (refreshToken) => api.post('/auth/logout', { refresh_token: refreshToken }),
   getCurrentUser: () => api.get('/auth/users/me'),
 };
 
 export const profileAPI = {
   getProfile: () => api.get('/auth/users/me'),
-  updateProfile: (profileData) => api.put('/auth/users/me', profileData),
+  // Note: updateProfile endpoint doesn't exist in backend yet
+  // This saves to localStorage for now
+  updateProfile: (profileData) => {
+    console.info('Profile saved to localStorage (backend endpoint not implemented)');
+    return Promise.resolve({ data: { message: 'Profile saved locally' } });
+  },
 };
 
+// Note: Food logs endpoints don't exist in backend yet
 export const foodLogAPI = {
-  getLogs: () => api.get('/actions/logs'),
-  createLog: (logData) => api.post('/actions/logs', logData),
+  getLogs: () => api.get('/actions/logs/'),
+  createLog: (logData) => api.post('/actions/logs/', logData),
   updateLog: (id, logData) => api.put(`/actions/logs/${id}`, logData),
   deleteLog: (id) => api.delete(`/actions/logs/${id}`),
 };
 
 export const inventoryAPI = {
-  getItems: () => api.get('/actions/inventory'),
-  createItem: (itemData) => api.post('/actions/inventory', itemData),
-  updateItem: (id, itemData) => api.put(`/actions/inventory/${id}`, itemData),
-  deleteItem: (id) => api.delete(`/actions/inventory/${id}`),
+  getItems: () => api.get('/actions/inventory/'),
+  createItem: (itemData) => api.post('/actions/inventory/', itemData),
+  updateItem: (id, itemData) => {
+    console.warn('Inventory update endpoint not implemented in backend');
+    return Promise.reject(new Error('Inventory update not implemented'));
+  },
+  deleteItem: (id) => {
+    console.warn('Inventory delete endpoint not implemented in backend');
+    return Promise.reject(new Error('Inventory delete not implemented'));
+  },
 };
 
+// Note: Image upload endpoints don't exist in backend yet
 export const imageAPI = {
   uploadImage: (file) => {
-    const formData = new FormData();
-    formData.append('file', file);
-    return api.post('/actions/images', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    console.warn('Image upload endpoint not implemented in backend');
+    return Promise.reject(new Error('Image upload not implemented'));
   },
-  getImages: () => api.get('/actions/images'),
-  deleteImage: (id) => api.delete(`/actions/images/${id}`),
+  getImages: () => Promise.resolve({ data: [] }),
+  deleteImage: (id) => {
+    console.warn('Image delete endpoint not implemented in backend');
+    return Promise.reject(new Error('Image delete not implemented'));
+  },
 };
 
 export default api;

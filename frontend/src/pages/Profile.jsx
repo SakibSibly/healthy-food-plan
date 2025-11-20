@@ -56,23 +56,25 @@ const Profile = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="mb-8">
-        <div className="flex items-center space-x-3 mb-2">
-          <span className="text-4xl">👤</span>
-          <h1 className="text-4xl font-bold text-gray-900">Profile</h1>
+      <div className="bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-primary-200">
+        <div className="flex items-center space-x-4 mb-3">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-4xl shadow-xl">
+            <span>👤</span>
+          </div>
+          <h1 className="text-5xl font-bold text-neutral-800 tracking-tight">Profile</h1>
         </div>
-        <p className="text-gray-600 text-lg ml-14">Manage your account and preferences</p>
+        <p className="text-neutral-600 text-xl ml-20">Manage your account and preferences</p>
       </div>
 
       <div className="card">
-        <div className="flex items-center justify-between mb-6 pb-6 border-b-2 border-gray-100">
+        <div className="flex items-center justify-between mb-6 pb-6 border-b-2 border-primary-100">
           <div className="flex items-center space-x-5">
-            <div className="w-24 h-24 bg-gradient-to-br from-primary-100 to-primary-200 rounded-full flex items-center justify-center text-5xl border-4 border-white shadow-xl transform hover:scale-105 transition-transform">
-              👤
+            <div className="w-24 h-24 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full flex items-center justify-center text-5xl border-4 border-white shadow-xl transform hover:scale-105 transition-transform">
+              <span className="text-white">👤</span>
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-gray-900">{user?.username}</h2>
-              <p className="text-gray-600 text-lg mt-1">{profile.email}</p>
+              <h2 className="text-3xl font-bold text-neutral-900">{user?.username}</h2>
+              <p className="text-neutral-600 text-lg mt-1">{profile.email}</p>
             </div>
           </div>
           {!isEditing && (
@@ -86,17 +88,22 @@ const Profile = () => {
         </div>
 
         {success && (
-          <div className="mb-6 bg-green-50 border-l-4 border-green-500 text-green-700 px-4 py-3 rounded-lg">
-            <p className="font-semibold">Success!</p>
-            <p className="text-sm">{success}</p>
+          <div className="alert alert-success animate-slide-down">
+            <div className="flex items-start space-x-3">
+              <span className="text-2xl">✅</span>
+              <div>
+                <p className="font-bold text-sm">Success!</p>
+                <p className="text-sm mt-1">{success}</p>
+              </div>
+            </div>
           </div>
         )}
 
         <form onSubmit={handleSubmit}>
           <div className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <div className="form-group">
+                <label className="form-label">
                   Full Name
                 </label>
                 <input

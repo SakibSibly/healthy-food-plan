@@ -19,11 +19,19 @@ export const AuthProvider = ({ children }) => {
         const response = await authAPI.getCurrentUser();
         setUser(response.data);
         setIsAuthenticated(true);
+      } else {
+        // No token, user not logged in - this is normal
+        setLoading(false);
       }
     } catch (error) {
-      console.error('Auth check failed:', error);
+      // Only log error if we actually had a token (not on initial page load)
+      if (localStorage.getItem('access_token')) {
+        console.error('Auth check failed:', error);
+      }
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
+      setIsAuthenticated(false);
+      setUser(null);
     } finally {
       setLoading(false);
     }

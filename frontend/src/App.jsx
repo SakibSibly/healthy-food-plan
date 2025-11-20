@@ -9,13 +9,14 @@ import Profile from './pages/Profile';
 import FoodLogs from './pages/FoodLogs';
 import Inventory from './pages/Inventory';
 import Resources from './pages/Resources';
+import ResourceDetail from './pages/ResourceDetail';
 import ImageUpload from './pages/ImageUpload';
 
 function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="min-h-screen bg-slate-50">
+        <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-accent-50">
           <Navbar />
           <Routes>
             <Route path="/login" element={<Login />} />
@@ -57,6 +58,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Resources />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/resources/:id"
+              element={
+                <ProtectedRoute>
+                  <ResourceDetail />
                 </ProtectedRoute>
               }
             />

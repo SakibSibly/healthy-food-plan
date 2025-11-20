@@ -1,12 +1,13 @@
 from fastapi import Depends
 from fastapi.routing import APIRouter
 from fastapi import HTTPException
-from app.models import User, InventoryItem
+from app.models import User, InventoryItem, FoodLog
 from app.api.deps import get_current_user
 from app.db import get_session
 from typing import Annotated
 from sqlmodel import Session, select, Field, SQLModel
 import uuid
+from datetime import datetime
 
 
 class InventoryItemCreate(SQLModel):
@@ -16,6 +17,12 @@ class InventoryItemCreate(SQLModel):
     cost: float = Field(default=None, ge=0.0)
     expiration_date: str | None = Field(default=None, max_length=20)
     notes: str | None = Field(default=None, max_length=200)
+
+
+class FoodLogCreate(SQLModel):
+    inventory_item_id: uuid.UUID = Field(description="ID of the inventory item being consumed")
+    quantity: float = Field(ge=0.0)
+    notes: str | None = Field(default=None, max_length=500)
 
 
 router = APIRouter(
@@ -54,7 +61,7 @@ def get_inventory_items(
     """Get all inventory items for the current user."""
     items = session.exec(
         select(InventoryItem).where(InventoryItem.user_id == current_user.id)
-    ).all()
+    ).unique().all()
     return items
 
 
@@ -69,3 +76,119 @@ def get_inventory_item(
         raise HTTPException(status_code=404, detail="Item not found")
     return item
 
+
+# Food Log endpoints
+
+@router.post("/logs/", response_model=FoodLog, status_code=201)
+def create_food_log(
+    log_data: FoodLogCreate,
+    current_user: Annotated[User, Depends(get_current_user)],
+    session: Annotated[Session, Depends(get_session)]):
+    """Create a new food consumption log from inventory item."""
+    # Get the inventory item
+    inventory_item = session.get(InventoryItem, log_data.inventory_item_id)
+    
+    # Validate inventory item exists and belongs to user
+    if not inventory_item or inventory_item.user_id != current_user.id:
+        raise HTTPException(status_code=404, detail="Inventory item not found")
+    
+    # Validate sufficient quantity
+    if inventory_item.quantity < log_data.quantity:
+        raise HTTPException(
+            status_code=400, 
+            detail=f"Insufficient quantity. Available: {inventory_item.quantity}, Requested: {log_data.quantity}"
+        )
+    
+    # Update inventory quantity
+    inventory_item.quantity -= log_data.quantity
+    
+    # If quantity reaches zero, optionally delete or keep the item
+    if inventory_item.quantity <= 0:
+        session.delete(inventory_item)
+    else:
+        session.add(inventory_item)
+    
+    # Create food log
+    current_time = datetime.now().isoformat()
+    db_log = FoodLog(
+        item_name=inventory_item.name,
+        quantity=log_data.quantity,
+        unit="units",  # You can enhance this with unit tracking
+        category=inventory_item.category or "other",
+        notes=log_data.notes,
+        consumed_at=current_time,
+        created_at=current_time,
+        inventory_item_id=log_data.inventory_item_id,
+        user_id=current_user.id
+    )
+    session.add(db_log)
+    session.commit()
+    session.refresh(db_log)
+    return db_log
+
+
+@router.get("/logs/", response_model=list[FoodLog])
+def get_food_logs(
+    current_user: Annotated[User, Depends(get_current_user)],
+    session: Annotated[Session, Depends(get_session)],
+    limit: int | None = None):
+    """Get all food logs for the current user."""
+    query = select(FoodLog).where(FoodLog.user_id == current_user.id).order_by(FoodLog.created_at.desc())
+    
+    if limit:
+        query = query.limit(limit)
+    
+    logs = session.exec(query).unique().all()
+    return logs
+
+
+@router.get("/logs/{log_id}", response_model=FoodLog)
+def get_food_log(
+    log_id: uuid.UUID,
+    current_user: Annotated[User, Depends(get_current_user)],
+    session: Annotated[Session, Depends(get_session)]):
+    """Get a specific food log by ID."""
+    log = session.get(FoodLog, log_id)
+    if log is None or log.user_id != current_user.id:
+        raise HTTPException(status_code=404, detail="Food log not found")
+    return log
+
+
+@router.put("/logs/{log_id}", response_model=FoodLog)
+def update_food_log(
+    log_id: uuid.UUID,
+    log_data: FoodLogCreate,
+    current_user: Annotated[User, Depends(get_current_user)],
+    session: Annotated[Session, Depends(get_session)]):
+    """Update a food log."""
+    log = session.get(FoodLog, log_id)
+    if log is None or log.user_id != current_user.id:
+        raise HTTPException(status_code=404, detail="Food log not found")
+    
+    log.item_name = log_data.item_name
+    log.quantity = log_data.quantity
+    log.unit = log_data.unit
+    log.category = log_data.category
+    log.notes = log_data.notes
+    if log_data.consumed_at:
+        log.consumed_at = log_data.consumed_at
+    
+    session.add(log)
+    session.commit()
+    session.refresh(log)
+    return log
+
+
+@router.delete("/logs/{log_id}", status_code=204)
+def delete_food_log(
+    log_id: uuid.UUID,
+    current_user: Annotated[User, Depends(get_current_user)],
+    session: Annotated[Session, Depends(get_session)]):
+    """Delete a food log."""
+    log = session.get(FoodLog, log_id)
+    if log is None or log.user_id != current_user.id:
+        raise HTTPException(status_code=404, detail="Food log not found")
+    
+    session.delete(log)
+    session.commit()
+    return None
