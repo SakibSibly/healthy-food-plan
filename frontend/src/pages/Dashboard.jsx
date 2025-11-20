@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { foodLogAPI, inventoryAPI } from '../services/api';
 import { resources } from '../data/seedData';
+import bannerImage from '../assets/banner.png';
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -41,13 +42,23 @@ const Dashboard = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Page Header */}
-      <div className="page-header bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-primary-200">
-        <h1 className="text-5xl font-bold text-neutral-800 mb-3 tracking-tight">Dashboard</h1>
-        <p className="text-neutral-600 text-xl">Welcome back, <span className="font-bold text-primary-600">{user?.username}</span>! Here's your food management overview.</p>
+      {/* Hero Banner */}
+      <div className="relative rounded-3xl overflow-hidden shadow-2xl mb-8 group border-4 border-white/50 max-h-80">
+        {/* Animated Background Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-transparent to-accent-500/10 animate-pulse opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10"></div>
+        
+        <img 
+          src={bannerImage} 
+          alt="Healthy Food Plan Banner" 
+          className="w-full h-auto max-h-80 object-cover transition-all duration-700 group-hover:scale-105 brightness-100 group-hover:brightness-105"
+        />
+        
+        {/* Decorative Corner Elements */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/5 to-transparent rounded-bl-full"></div>
+        <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-white/5 to-transparent rounded-tr-full"></div>
       </div>
 
-      {/* Stats Cards */}
+      {/* Stats Cards with enhanced design */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <div className="stat-card group cursor-pointer bg-gradient-to-br from-primary-500 to-primary-600 text-white">
           <div className="flex items-center justify-between">

@@ -11,6 +11,7 @@ import Inventory from './pages/Inventory';
 import Resources from './pages/Resources';
 import ResourceDetail from './pages/ResourceDetail';
 import ImageUpload from './pages/ImageUpload';
+import FoodDatabase from './pages/FoodDatabase';
 
 function App() {
   return (
@@ -42,6 +43,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <FoodLogs />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/food-database"
+              element={
+                <ProtectedRoute>
+                  <FoodDatabase />
                 </ProtectedRoute>
               }
             />

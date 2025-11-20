@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { inventoryAPI } from '../services/api';
 import { foodItems, categories } from '../data/seedData';
 
 const Inventory = () => {
+  const location = useLocation();
   const [inventory, setInventory] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [filterCategory, setFilterCategory] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     quantity: '',
@@ -18,7 +21,36 @@ const Inventory = () => {
 
   useEffect(() => {
     loadInventory();
-  }, []);
+    
+    // Check if we have prefill data from navigation (from Food Database)
+    if (location.state?.prefillData) {
+      const prefill = location.state.prefillData;
+      const newFormData = {
+        name: prefill.name || '',
+        quantity: prefill.quantity || '',
+        category: prefill.category || '',
+        expirationDate: prefill.expirationDate || '',
+        notes: prefill.notes || '',
+        cost: prefill.cost || '',
+      };
+      setFormData(newFormData);
+      setShowForm(true);
+      
+      // Show success message
+      setSuccessMessage(`${prefill.name} is ready to add! Review and click "Add to Inventory" below.`);
+      
+      // Clear the state so it doesn't persist on refresh
+      window.history.replaceState({}, document.title);
+      
+      // Auto-scroll to form
+      setTimeout(() => {
+        const formElement = document.getElementById('inventory-form');
+        if (formElement) {
+          formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   const loadInventory = async () => {
     try {
@@ -38,6 +70,7 @@ const Inventory = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSuccessMessage('');
     try {
       // Transform data to match backend expectations (snake_case)
       const backendData = {
@@ -52,8 +85,10 @@ const Inventory = () => {
       if (editingItem) {
         await inventoryAPI.updateItem(editingItem.id, backendData);
         setEditingItem(null);
+        setSuccessMessage(`✅ ${formData.name} updated successfully!`);
       } else {
         await inventoryAPI.createItem(backendData);
+        setSuccessMessage(`✅ ${formData.name} added to inventory successfully!`);
       }
       setFormData({
         name: '',
@@ -64,7 +99,10 @@ const Inventory = () => {
         cost: '',
       });
       setShowForm(false);
-      loadInventory();
+      await loadInventory();
+      
+      // Clear success message after 5 seconds
+      setTimeout(() => setSuccessMessage(''), 5000);
     } catch (error) {
       console.error('Failed to save item:', error);
       alert('Failed to save item: ' + (error.response?.data?.detail || error.message));
@@ -139,8 +177,21 @@ const Inventory = () => {
         </button>
       </div>
 
+      {/* Success Message */}
+      {successMessage && (
+        <div className="alert alert-success animate-slide-down mb-6">
+          <div className="flex items-start space-x-3">
+            <span className="text-2xl">✅</span>
+            <div>
+              <p className="font-bold text-sm">Success!</p>
+              <p className="text-sm mt-1">{successMessage}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {showForm && (
-        <div className="card mb-6 animate-slide-down border-2 border-accent-200">
+        <div id="inventory-form" className="card mb-6 animate-slide-down border-2 border-accent-200">
           <div className="flex items-center space-x-2 mb-6">
             <span className="text-2xl">{editingItem ? '✏️' : '➕'}</span>
             <h2 className="text-2xl font-bold text-neutral-900">

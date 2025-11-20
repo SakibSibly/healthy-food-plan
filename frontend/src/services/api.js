@@ -87,14 +87,8 @@ export const foodLogAPI = {
 export const inventoryAPI = {
   getItems: () => api.get('/actions/inventory/'),
   createItem: (itemData) => api.post('/actions/inventory/', itemData),
-  updateItem: (id, itemData) => {
-    console.warn('Inventory update endpoint not implemented in backend');
-    return Promise.reject(new Error('Inventory update not implemented'));
-  },
-  deleteItem: (id) => {
-    console.warn('Inventory delete endpoint not implemented in backend');
-    return Promise.reject(new Error('Inventory delete not implemented'));
-  },
+  updateItem: (id, itemData) => api.put(`/actions/inventory/${id}`, itemData),
+  deleteItem: (id) => api.delete(`/actions/inventory/${id}`),
 };
 
 // Note: Image upload endpoints don't exist in backend yet

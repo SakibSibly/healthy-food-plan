@@ -77,6 +77,46 @@ def get_inventory_item(
     return item
 
 
+@router.put("/inventory/{item_id}", response_model=InventoryItem)
+def update_inventory_item(
+    item_id: uuid.UUID,
+    item_data: InventoryItemCreate,
+    current_user: Annotated[User, Depends(get_current_user)],
+    session: Annotated[Session, Depends(get_session)]):
+    """Update an inventory item for the current user."""
+    item = session.get(InventoryItem, item_id)
+    if item is None or item.user_id != current_user.id:
+        raise HTTPException(status_code=404, detail="Item not found")
+    
+    # Update fields
+    item.name = item_data.name
+    item.category = item_data.category
+    item.quantity = item_data.quantity
+    item.cost = item_data.cost
+    item.expiration_date = item_data.expiration_date
+    item.notes = item_data.notes
+    
+    session.add(item)
+    session.commit()
+    session.refresh(item)
+    return item
+
+
+@router.delete("/inventory/{item_id}", status_code=204)
+def delete_inventory_item(
+    item_id: uuid.UUID,
+    current_user: Annotated[User, Depends(get_current_user)],
+    session: Annotated[Session, Depends(get_session)]):
+    """Delete an inventory item for the current user."""
+    item = session.get(InventoryItem, item_id)
+    if item is None or item.user_id != current_user.id:
+        raise HTTPException(status_code=404, detail="Item not found")
+    
+    session.delete(item)
+    session.commit()
+    return None
+
+
 # Food Log endpoints
 
 @router.post("/logs/", response_model=FoodLog, status_code=201)

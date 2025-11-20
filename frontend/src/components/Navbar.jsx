@@ -60,6 +60,16 @@ const Navbar = () => {
               <span className="mr-2 text-lg">📦</span> Inventory
             </Link>
             <Link
+              to="/food-database"
+              className={`inline-flex items-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                isActive('/food-database')
+                  ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30'
+                  : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
+              }`}
+            >
+              <span className="mr-2 text-lg">📖</span> Food DB
+            </Link>
+            <Link
               to="/resources"
               className={`inline-flex items-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
                 isActive('/resources')
@@ -125,6 +135,16 @@ const Navbar = () => {
             }`}
           >
             <span className="mr-3 text-xl">📦</span> Inventory
+          </Link>
+          <Link
+            to="/food-database"
+            className={`flex items-center px-4 py-3 rounded-xl text-base font-semibold transition-all duration-200 ${
+              isActive('/food-database')
+                ? 'bg-primary-500 text-white shadow-lg'
+                : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
+            }`}
+          >
+            <span className="mr-3 text-xl">📖</span> Food Database
           </Link>
           <Link
             to="/resources"
