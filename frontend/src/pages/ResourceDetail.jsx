@@ -10,10 +10,11 @@ const ResourceDetail = () => {
   if (!resource) {
     return (
       <div className="max-w-3xl mx-auto p-8">
-        <div className="glass-card text-center py-12">
-          <h2 className="text-2xl font-bold mb-4 text-white">Resource not found</h2>
-          <p className="text-white/80 mb-6">The requested resource does not exist.</p>
-          <button onClick={() => navigate(-1)} className="btn-primary">Go Back</button>
+        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 text-center py-12 px-6">
+          <div className="text-6xl mb-4">❌</div>
+          <h2 className="text-2xl font-bold mb-4 text-gray-900">Resource not found</h2>
+          <p className="text-gray-600 mb-6">The requested resource does not exist.</p>
+          <button onClick={() => navigate('/resources')} className="btn-primary">← Back to Resources</button>
         </div>
       </div>
     );
@@ -21,46 +22,66 @@ const ResourceDetail = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="glass-card p-10">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h1 className="text-4xl font-bold mb-3 text-white drop-shadow-lg">{resource.title}</h1>
-            <div className="flex items-center gap-3 mt-2">
-              <span className="badge bg-gradient-to-r from-pink-500 to-rose-600 text-white px-4 py-2 shadow-lg">{resource.category}</span>
-              <span className="badge bg-gradient-to-r from-purple-500 to-indigo-600 text-white px-4 py-2 shadow-lg">{resource.type}</span>
+      {/* Header Card */}
+      <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-6">
+        <div className="flex items-start justify-between mb-6">
+          <div className="flex-1">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="text-5xl">{resource.type === 'video' ? '🎥' : '📄'}</div>
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900 mb-2">{resource.title}</h1>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="badge bg-accent-100 text-accent-800 px-4 py-2">
+                    {resource.category.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                  </span>
+                  <span className="badge bg-primary-100 text-primary-800 px-4 py-2">
+                    {resource.type.charAt(0).toUpperCase() + resource.type.slice(1)}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="text-5xl drop-shadow-xl">{resource.type === 'video' ? '🎥' : '📄'}</div>
         </div>
+      </div>
 
-        <p className="text-white/90 mb-6 text-lg leading-relaxed">{resource.description}</p>
+      {/* Content Card */}
+      <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-6">
+        <h2 className="text-xl font-bold text-gray-900 mb-4">📖 About This Resource</h2>
+        <p className="text-gray-700 text-lg leading-relaxed mb-6">{resource.description}</p>
 
-        <div className="mb-6 glass-card p-6">
-          <p className="text-sm font-bold text-white/80 mb-3 uppercase tracking-wider">Related Categories</p>
+        <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6 border border-green-200">
+          <p className="text-sm font-bold text-gray-700 mb-3 uppercase tracking-wider">🏷️ Related Categories</p>
           <div className="flex flex-wrap gap-2">
             {resource.relatedCategories.map((cat, idx) => (
-              <span key={idx} className="text-sm bg-green-500/80 backdrop-blur-sm text-white px-4 py-2 rounded-full font-bold shadow-md">{cat === 'all' ? 'All' : cat}</span>
+              <span key={idx} className="text-sm bg-white text-gray-700 px-4 py-2 rounded-full font-semibold shadow-sm border border-gray-200">
+                {cat === 'all' ? 'All Categories' : cat.charAt(0).toUpperCase() + cat.slice(1)}
+              </span>
             ))}
           </div>
         </div>
+      </div>
 
-        <div className="flex gap-4">
+      {/* Action Buttons */}
+      <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6">
+        <div className="flex flex-col sm:flex-row gap-4">
           <a
             href={resource.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary text-lg px-8 py-4"
-            onClick={(e) => {
-              e.preventDefault();
-              window.open(resource.url, '_blank');
-            }}
+            className="btn-primary text-center text-lg px-8 py-4 flex items-center justify-center gap-2"
           >
             🔗 Open Resource
           </a>
-          <button onClick={() => navigate(-1)} className="btn-secondary text-lg px-8 py-4">
+          <button 
+            onClick={() => navigate('/resources')} 
+            className="btn-secondary text-lg px-8 py-4 flex items-center justify-center gap-2"
+          >
             ← Back to Resources
           </button>
         </div>
+        <p className="text-sm text-gray-500 mt-4 text-center">
+          💡 Clicking "Open Resource" will open the external link in a new tab
+        </p>
       </div>
     </div>
   );

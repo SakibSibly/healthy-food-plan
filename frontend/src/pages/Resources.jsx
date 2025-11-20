@@ -253,7 +253,7 @@ const Resources = () => {
           }
           
           return (
-            <div key={resource.id} className="card hover:shadow-xl transition-all hover:border-primary-200 hover:-translate-y-1 group relative">
+            <div key={resource.id} className="card hover:shadow-xl transition-all hover:border-primary-200 hover:-translate-y-1 group relative flex flex-col">
               <button
                 onClick={() => toggleSaveResource(resource.id)}
                 className={`absolute top-4 right-4 text-2xl transition-transform hover:scale-125 z-10 ${isSaved ? 'text-yellow-500' : 'text-gray-300 group-hover:text-yellow-400'}`}
@@ -266,23 +266,23 @@ const Resources = () => {
                 <div className="text-4xl">
                   {resource.type === 'video' ? '🎥' : '📄'}
                 </div>
-                <div className="flex flex-col items-end gap-2 mr-8">
-                  <span className="badge bg-accent-100 text-accent-800">
+                <div className="flex flex-col gap-2 mr-8">
+                  <span className="badge bg-accent-100 text-accent-800 text-xs">
                     {resource.category
                       .split('-')
                       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                       .join(' ')}
                   </span>
-                  <span className="badge bg-primary-100 text-primary-800">
+                  <span className="badge bg-primary-100 text-primary-800 text-xs">
                     {resource.type.charAt(0).toUpperCase() + resource.type.slice(1)}
                   </span>
                 </div>
               </div>
 
-              <h3 className="text-lg font-bold text-gray-900 mb-3 pr-8">{resource.title}</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-3">{resource.title}</h3>
               <p className="text-sm text-gray-600 mb-4 line-clamp-3">{resource.description}</p>
 
-              <div className="mb-4 pb-4 border-b border-gray-100">
+              <div className="mb-4 pb-4 border-b border-gray-100 flex-grow">
                 <p className="text-xs text-gray-600 font-semibold mb-2">Related to:</p>
                 <div className="flex flex-wrap gap-2">
                   {resource.relatedCategories.map((cat, idx) => (
@@ -298,7 +298,7 @@ const Resources = () => {
 
               <button
                 onClick={() => navigate(`/resources/${resource.id}`)}
-                className="inline-block w-full text-center btn-primary"
+                className="inline-block w-full text-center btn-primary mt-auto"
               >
                 View Resource →
               </button>
