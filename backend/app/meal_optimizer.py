@@ -63,7 +63,7 @@ class FoodDatabase:
         # Proteins
         'chicken_breast': {
             'category': 'protein',
-            'cost_per_100g': 1.20,
+            'cost_per_100g': 32,
             'calories': 165,
             'protein': 31,
             'carbs': 0,
@@ -74,7 +74,7 @@ class FoodDatabase:
         },
         'eggs': {
             'category': 'protein',
-            'cost_per_100g': 0.30,
+            'cost_per_100g': 14,
             'calories': 155,
             'protein': 13,
             'carbs': 1.1,
@@ -85,7 +85,7 @@ class FoodDatabase:
         },
         'salmon': {
             'category': 'protein',
-            'cost_per_100g': 2.50,
+            'cost_per_100g': 160,
             'calories': 208,
             'protein': 20,
             'carbs': 0,
@@ -96,7 +96,7 @@ class FoodDatabase:
         },
         'ground_beef': {
             'category': 'protein',
-            'cost_per_100g': 1.50,
+            'cost_per_100g': 45,
             'calories': 250,
             'protein': 26,
             'carbs': 0,
@@ -107,7 +107,7 @@ class FoodDatabase:
         },
         'tofu': {
             'category': 'protein',
-            'cost_per_100g': 0.80,
+            'cost_per_100g': 25,
             'calories': 76,
             'protein': 8,
             'carbs': 1.9,
@@ -120,7 +120,7 @@ class FoodDatabase:
         # Grains
         'brown_rice': {
             'category': 'grain',
-            'cost_per_100g': 0.15,
+            'cost_per_100g': 7,
             'calories': 370,
             'protein': 7.9,
             'carbs': 77,
@@ -131,7 +131,7 @@ class FoodDatabase:
         },
         'whole_wheat_bread': {
             'category': 'grain',
-            'cost_per_100g': 0.20,
+            'cost_per_100g': 10,
             'calories': 247,
             'protein': 13,
             'carbs': 41,
@@ -142,7 +142,7 @@ class FoodDatabase:
         },
         'oatmeal': {
             'category': 'grain',
-            'cost_per_100g': 0.18,
+            'cost_per_100g': 12,
             'calories': 389,
             'protein': 16.9,
             'carbs': 66,
@@ -153,7 +153,7 @@ class FoodDatabase:
         },
         'pasta': {
             'category': 'grain',
-            'cost_per_100g': 0.12,
+            'cost_per_100g': 8,
             'calories': 371,
             'protein': 13,
             'carbs': 74,
@@ -166,7 +166,7 @@ class FoodDatabase:
         # Vegetables
         'broccoli': {
             'category': 'vegetable',
-            'cost_per_100g': 0.25,
+            'cost_per_100g': 8,
             'calories': 34,
             'protein': 2.8,
             'carbs': 7,
@@ -177,7 +177,7 @@ class FoodDatabase:
         },
         'spinach': {
             'category': 'vegetable',
-            'cost_per_100g': 0.30,
+            'cost_per_100g': 6,
             'calories': 23,
             'protein': 2.9,
             'carbs': 3.6,
@@ -188,7 +188,7 @@ class FoodDatabase:
         },
         'carrots': {
             'category': 'vegetable',
-            'cost_per_100g': 0.15,
+            'cost_per_100g': 5,
             'calories': 41,
             'protein': 0.9,
             'carbs': 10,
@@ -199,7 +199,7 @@ class FoodDatabase:
         },
         'bell_peppers': {
             'category': 'vegetable',
-            'cost_per_100g': 0.35,
+            'cost_per_100g': 12,
             'calories': 31,
             'protein': 1,
             'carbs': 6,
@@ -210,7 +210,7 @@ class FoodDatabase:
         },
         'tomatoes': {
             'category': 'vegetable',
-            'cost_per_100g': 0.20,
+            'cost_per_100g': 6,
             'calories': 18,
             'protein': 0.9,
             'carbs': 3.9,
@@ -223,7 +223,7 @@ class FoodDatabase:
         # Fruits
         'banana': {
             'category': 'fruit',
-            'cost_per_100g': 0.10,
+            'cost_per_100g': 8,
             'calories': 89,
             'protein': 1.1,
             'carbs': 23,
@@ -234,7 +234,7 @@ class FoodDatabase:
         },
         'apple': {
             'category': 'fruit',
-            'cost_per_100g': 0.15,
+            'cost_per_100g': 18,
             'calories': 52,
             'protein': 0.3,
             'carbs': 14,
@@ -245,7 +245,7 @@ class FoodDatabase:
         },
         'orange': {
             'category': 'fruit',
-            'cost_per_100g': 0.18,
+            'cost_per_100g': 15,
             'calories': 47,
             'protein': 0.9,
             'carbs': 12,
@@ -256,7 +256,7 @@ class FoodDatabase:
         },
         'berries': {
             'category': 'fruit',
-            'cost_per_100g': 0.40,
+            'cost_per_100g': 35,
             'calories': 57,
             'protein': 0.7,
             'carbs': 14,
@@ -269,7 +269,7 @@ class FoodDatabase:
         # Dairy
         'milk': {
             'category': 'dairy',
-            'cost_per_100g': 0.08,
+            'cost_per_100g': 11,
             'calories': 42,
             'protein': 3.4,
             'carbs': 5,
@@ -280,7 +280,7 @@ class FoodDatabase:
         },
         'greek_yogurt': {
             'category': 'dairy',
-            'cost_per_100g': 0.50,
+            'cost_per_100g': 44,
             'calories': 59,
             'protein': 10,
             'carbs': 3.6,
@@ -291,7 +291,7 @@ class FoodDatabase:
         },
         'cheese': {
             'category': 'dairy',
-            'cost_per_100g': 0.60,
+            'cost_per_100g': 90,
             'calories': 402,
             'protein': 25,
             'carbs': 1.3,
@@ -304,7 +304,7 @@ class FoodDatabase:
         # Healthy fats
         'avocado': {
             'category': 'vegetable',
-            'cost_per_100g': 0.50,
+            'cost_per_100g': 40,
             'calories': 160,
             'protein': 2,
             'carbs': 9,
@@ -315,7 +315,7 @@ class FoodDatabase:
         },
         'olive_oil': {
             'category': 'fat',
-            'cost_per_100g': 0.80,
+            'cost_per_100g': 60,
             'calories': 884,
             'protein': 0,
             'carbs': 0,
@@ -326,7 +326,7 @@ class FoodDatabase:
         },
         'nuts_almonds': {
             'category': 'protein',
-            'cost_per_100g': 1.00,
+            'cost_per_100g': 80,
             'calories': 579,
             'protein': 21,
             'carbs': 22,

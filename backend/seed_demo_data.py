@@ -14,23 +14,23 @@ from sqlmodel import Session, select
 from app.models import User, InventoryItem, FoodLog
 from app.db import engine
 
-# Food items with realistic data
+# Food items with realistic BDT prices
 FOOD_ITEMS = [
-    {"name": "Milk", "category": "dairy", "quantity": 2, "unit": "liters", "cost": 4.50, "expiration_days": 7},
-    {"name": "Eggs", "category": "protein", "quantity": 12, "unit": "pieces", "cost": 5.00, "expiration_days": 21},
-    {"name": "Chicken Breast", "category": "protein", "quantity": 1.5, "unit": "kg", "cost": 12.00, "expiration_days": 3},
-    {"name": "Broccoli", "category": "vegetable", "quantity": 0.5, "unit": "kg", "cost": 3.00, "expiration_days": 5},
-    {"name": "Rice", "category": "grain", "quantity": 2, "unit": "kg", "cost": 6.00, "expiration_days": 365},
-    {"name": "Apples", "category": "fruit", "quantity": 1, "unit": "kg", "cost": 4.00, "expiration_days": 14},
-    {"name": "Tomatoes", "category": "vegetable", "quantity": 0.8, "unit": "kg", "cost": 3.50, "expiration_days": 7},
-    {"name": "Pasta", "category": "grain", "quantity": 1, "unit": "kg", "cost": 2.50, "expiration_days": 730},
-    {"name": "Yogurt", "category": "dairy", "quantity": 1, "unit": "kg", "cost": 4.00, "expiration_days": 14},
-    {"name": "Bananas", "category": "fruit", "quantity": 1.2, "unit": "kg", "cost": 2.00, "expiration_days": 5},
-    {"name": "Cheese", "category": "dairy", "quantity": 0.5, "unit": "kg", "cost": 8.00, "expiration_days": 30},
-    {"name": "Bread", "category": "grain", "quantity": 1, "unit": "loaf", "cost": 3.00, "expiration_days": 5},
-    {"name": "Carrots", "category": "vegetable", "quantity": 1, "unit": "kg", "cost": 2.00, "expiration_days": 21},
-    {"name": "Salmon", "category": "protein", "quantity": 0.5, "unit": "kg", "cost": 15.00, "expiration_days": 2},
-    {"name": "Lettuce", "category": "vegetable", "quantity": 1, "unit": "head", "cost": 2.50, "expiration_days": 7},
+    {"name": "Milk", "category": "dairy", "quantity": 2, "unit": "liters", "cost": 220, "expiration_days": 7},
+    {"name": "Eggs", "category": "protein", "quantity": 12, "unit": "pieces", "cost": 168, "expiration_days": 21},
+    {"name": "Chicken Breast", "category": "protein", "quantity": 1.5, "unit": "kg", "cost": 480, "expiration_days": 3},
+    {"name": "Broccoli", "category": "vegetable", "quantity": 0.5, "unit": "kg", "cost": 40, "expiration_days": 5},
+    {"name": "Rice", "category": "grain", "quantity": 2, "unit": "kg", "cost": 140, "expiration_days": 365},
+    {"name": "Apples", "category": "fruit", "quantity": 1, "unit": "kg", "cost": 180, "expiration_days": 14},
+    {"name": "Tomatoes", "category": "vegetable", "quantity": 0.8, "unit": "kg", "cost": 48, "expiration_days": 7},
+    {"name": "Pasta", "category": "grain", "quantity": 1, "unit": "kg", "cost": 150, "expiration_days": 730},
+    {"name": "Yogurt", "category": "dairy", "quantity": 1, "unit": "kg", "cost": 180, "expiration_days": 14},
+    {"name": "Bananas", "category": "fruit", "quantity": 1.2, "unit": "kg", "cost": 96, "expiration_days": 5},
+    {"name": "Cheese", "category": "dairy", "quantity": 0.5, "unit": "kg", "cost": 450, "expiration_days": 30},
+    {"name": "Bread", "category": "grain", "quantity": 1, "unit": "loaf", "cost": 50, "expiration_days": 5},
+    {"name": "Carrots", "category": "vegetable", "quantity": 1, "unit": "kg", "cost": 50, "expiration_days": 21},
+    {"name": "Salmon", "category": "protein", "quantity": 0.5, "unit": "kg", "cost": 800, "expiration_days": 2},
+    {"name": "Lettuce", "category": "vegetable", "quantity": 1, "unit": "head", "cost": 40, "expiration_days": 7},
 ]
 
 # Consumption patterns (quantity consumed per log)

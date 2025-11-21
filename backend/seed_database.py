@@ -212,33 +212,33 @@ class DataSeeder:
         
         # Items expiring soon (critical waste risk)
         critical_items = [
-            ('Spinach', 'vegetable', 200, 0.60, 2),
-            ('Strawberries', 'fruit', 250, 3.50, 3),
-            ('Milk', 'dairy', 1000, 3.99, 3)
+            ('Spinach', 'vegetable', 200, 30, 2),
+            ('Strawberries', 'fruit', 250, 200, 3),
+            ('Milk', 'dairy', 1000, 110, 3)
         ]
         
         # Items expiring within a week (high risk)
         high_risk_items = [
-            ('Chicken Breast', 'protein', 500, 6.99, 5),
-            ('Bell Peppers', 'vegetable', 300, 2.49, 6),
-            ('Greek Yogurt', 'dairy', 500, 4.99, 6),
-            ('Lettuce', 'vegetable', 150, 1.99, 4)
+            ('Chicken Breast', 'protein', 500, 160, 5),
+            ('Bell Peppers', 'vegetable', 300, 90, 6),
+            ('Greek Yogurt', 'dairy', 500, 220, 6),
+            ('Lettuce', 'vegetable', 150, 35, 4)
         ]
         
         # Items with medium-term expiration
         medium_term_items = [
-            ('Broccoli', 'vegetable', 400, 2.99, 10),
-            ('Carrots', 'vegetable', 500, 1.99, 14),
-            ('Eggs', 'protein', 12, 4.99, 14),
-            ('Cheese', 'dairy', 200, 5.99, 21)
+            ('Broccoli', 'vegetable', 400, 60, 10),
+            ('Carrots', 'vegetable', 500, 50, 14),
+            ('Eggs', 'protein', 12, 168, 14),
+            ('Cheese', 'dairy', 200, 350, 21)
         ]
         
         # Long-term storage items
         long_term_items = [
-            ('Brown Rice', 'grain', 1000, 3.99, 180),
-            ('Pasta', 'grain', 500, 1.99, 365),
-            ('Oatmeal', 'grain', 800, 4.99, 270),
-            ('Quinoa', 'grain', 400, 6.99, 300)
+            ('Brown Rice', 'grain', 1000, 120, 180),
+            ('Pasta', 'grain', 500, 150, 365),
+            ('Oatmeal', 'grain', 800, 250, 270),
+            ('Quinoa', 'grain', 400, 380, 300)
         ]
         
         all_items = critical_items + high_risk_items + medium_term_items + long_term_items

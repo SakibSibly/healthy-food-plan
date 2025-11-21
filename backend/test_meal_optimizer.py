@@ -20,9 +20,9 @@ def test_basic_optimization():
     
     result = optimizer.optimize_weekly_plan()
     
-    print(f"\n✓ Budget: ${result['budget']:.2f}")
-    print(f"✓ Total Cost: ${result['total_cost']:.2f}")
-    print(f"✓ Remaining: ${result['budget_remaining']:.2f}")
+    print(f"\n✓ Budget: ৳{result['budget']:.2f}")
+    print(f"✓ Total Cost: ৳{result['total_cost']:.2f}")
+    print(f"✓ Remaining: ৳{result['budget_remaining']:.2f}")
     print(f"✓ Utilization: {result['budget_utilization']:.1f}%")
     print(f"✓ Total Meals: {len(result['meal_plan_items'])}")
     print(f"✓ Nutrition Score: {result['nutrition_analysis']['overall_score']}/100")
@@ -76,9 +76,9 @@ def test_with_inventory():
     
     result = optimizer.optimize_weekly_plan()
     
-    print(f"\n✓ Budget: ${result['budget']:.2f}")
-    print(f"✓ Total Cost: ${result['total_cost']:.2f}")
-    print(f"✓ Cost Saved: ${result['inventory_usage']['estimated_cost_saved']:.2f}")
+    print(f"\n✓ Budget: ৳{result['budget']:.2f}")
+    print(f"✓ Total Cost: ৳{result['total_cost']:.2f}")
+    print(f"✓ Cost Saved: ৳{result['inventory_usage']['estimated_cost_saved']:.2f}")
     print(f"✓ Inventory Usage: {result['inventory_usage']['inventory_usage_percentage']:.1f}%")
     print(f"✓ Meals from Inventory: {result['inventory_usage']['meals_from_inventory']}")
     
@@ -108,8 +108,8 @@ def test_vegetarian_diet():
         food_name = item['food_name'].lower().replace(' ', '_')
         assert food_name not in meat_items, f"Meat item found: {food_name}"
     
-    print(f"\n✓ Budget: ${result['budget']:.2f}")
-    print(f"✓ Total Cost: ${result['total_cost']:.2f}")
+    print(f"\n✓ Budget: ৳{result['budget']:.2f}")
+    print(f"✓ Total Cost: ৳{result['total_cost']:.2f}")
     print(f"✓ Total Meals: {len(result['meal_plan_items'])}")
     print("✓ No meat items found in meal plan")
     print("\n✓ Test PASSED\n")
