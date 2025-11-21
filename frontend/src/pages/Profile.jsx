@@ -184,10 +184,10 @@ const Profile = () => {
                   className="input-field disabled:bg-gray-100"
                 >
                   <option value="">Select budget range</option>
-                  <option value="<200">Less than ৳200</option>
-                  <option value="200-400">৳200 - ৳400</option>
-                  <option value="400-600">৳400 - ৳600</option>
-                  <option value="600+">৳600+</option>
+                  <option value="<10000">Less than ৳10,000</option>
+                  <option value="10000-20000">৳10,000 - ৳20,000</option>
+                  <option value="20000-30000">৳20,000 - ৳30,000</option>
+                  <option value="30000+">৳30,000+</option>
                 </select>
               </div>
 

@@ -11,7 +11,7 @@ export default function MealPlanner() {
   const [optimizationResult, setOptimizationResult] = useState(null);
   
   // Optimization form state
-  const [targetBudget, setTargetBudget] = useState(100);
+  const [targetBudget, setTargetBudget] = useState(3500);
   const [durationDays, setDurationDays] = useState(7);
   const [useInventory, setUseInventory] = useState(true);
   

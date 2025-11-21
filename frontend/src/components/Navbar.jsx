@@ -107,7 +107,7 @@ const Navbar = () => {
           <div className="relative">
             <button
               onClick={() => setShowUserMenu(!showUserMenu)}
-              className="flex items-center space-x-2 text-neutral-700 hover:text-[#3E7C59] px-3 py-2 rounded-lg hover:bg-[#3E7C59]/10 text-sm font-medium transition-all duration-200">
+              className="flex items-center space-x-2 text-neutral-700 hover:text-[#3E7C59] px-3 py-2 rounded-lg hover:bg-[#3E7C59]/10 text-sm font-medium transition-all duration-200"
             >
               <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-white font-bold text-sm">
                 {user?.username?.charAt(0).toUpperCase() || 'U'}
@@ -127,7 +127,7 @@ const Navbar = () => {
                   <Link
                     to="/profile"
                     onClick={() => setShowUserMenu(false)}
-                    className="block px-4 py-2 text-sm text-neutral-700 hover:bg-[#3E7C59]/10 hover:text-[#3E7C59]">
+                    className="block px-4 py-2 text-sm text-neutral-700 hover:bg-[#3E7C59]/10 hover:text-[#3E7C59]"
                   >
                     Profile Settings
                   </Link>
