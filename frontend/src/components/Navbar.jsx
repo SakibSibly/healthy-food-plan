@@ -1,4 +1,5 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import logo from '../assets/HFP-logo-full.png';
 
@@ -6,6 +7,7 @@ const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   const handleLogout = async () => {
     await logout();
@@ -28,97 +30,120 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-2">
+          <div className="hidden md:flex items-center space-x-1">
             <Link
               to="/dashboard"
-              className={`inline-flex items-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/dashboard')
-                  ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30'
+                  ? 'bg-primary-500 text-white'
                   : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
               }`}
             >
-              <span className="mr-2 text-lg">📊</span> Dashboard
+              Dashboard
             </Link>
             <Link
               to="/logs"
-              className={`inline-flex items-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/logs')
-                  ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30'
+                  ? 'bg-primary-500 text-white'
                   : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
               }`}
             >
-              <span className="mr-2 text-lg">📝</span> Food Logs
+              Logs
             </Link>
             <Link
               to="/inventory"
-              className={`inline-flex items-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/inventory')
-                  ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30'
+                  ? 'bg-primary-500 text-white'
                   : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
               }`}
             >
-              <span className="mr-2 text-lg">📦</span> Inventory
+              Inventory
             </Link>
             <Link
               to="/food-database"
-              className={`inline-flex items-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/food-database')
-                  ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30'
+                  ? 'bg-primary-500 text-white'
                   : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
               }`}
             >
-              <span className="mr-2 text-lg">📖</span> Food DB
+              Food DB
             </Link>
             <Link
               to="/analytics"
-              className={`inline-flex items-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/analytics')
-                  ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30'
+                  ? 'bg-primary-500 text-white'
                   : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
               }`}
             >
-              <span className="mr-2 text-lg">🧠</span> Analytics
+              Analytics
             </Link>
             <Link
               to="/meal-planner"
-              className={`inline-flex items-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/meal-planner')
-                  ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30'
+                  ? 'bg-primary-500 text-white'
                   : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
               }`}
             >
-              <span className="mr-2 text-lg">🍽️</span> Meal Planner
+              Planner
             </Link>
             <Link
               to="/resources"
-              className={`inline-flex items-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/resources')
-                  ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30'
+                  ? 'bg-primary-500 text-white'
                   : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
               }`}
             >
-              <span className="mr-2 text-lg">📚</span> Resources
+              Resources
             </Link>
           </div>
 
-          {/* User Menu */}
-          <div className="flex items-center space-x-4">
-            <Link
-              to="/profile"
-              className="flex items-center space-x-3 text-neutral-700 hover:text-primary-700 px-4 py-2.5 rounded-xl hover:bg-primary-50 text-sm font-semibold transition-all duration-300"
-            >
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white font-bold text-lg shadow-lg ring-2 ring-white">
-                {user?.username?.charAt(0).toUpperCase() || '👤'}
-              </div>
-              <span className="hidden sm:inline">{user?.username || 'Profile'}</span>
-            </Link>
+          {/* User Menu - Merged Profile & Logout */}
+          <div className="relative">
             <button
-              onClick={handleLogout}
-              className="btn-danger text-sm flex items-center space-x-2"
+              onClick={() => setShowUserMenu(!showUserMenu)}
+              className="flex items-center space-x-2 text-neutral-700 hover:text-primary-700 px-3 py-2 rounded-lg hover:bg-primary-50 text-sm font-medium transition-all duration-200"
             >
-              <span>Logout</span>
-              <span>→</span>
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white font-bold text-sm">
+                {user?.username?.charAt(0).toUpperCase() || 'U'}
+              </div>
+              <span className="hidden sm:inline">{user?.username || 'User'}</span>
+              <span className="text-xs">▾</span>
             </button>
+            
+            {/* Dropdown Menu */}
+            {showUserMenu && (
+              <>
+                <div 
+                  className="fixed inset-0 z-10" 
+                  onClick={() => setShowUserMenu(false)}
+                />
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-neutral-200 py-1 z-20">
+                  <Link
+                    to="/profile"
+                    onClick={() => setShowUserMenu(false)}
+                    className="block px-4 py-2 text-sm text-neutral-700 hover:bg-primary-50 hover:text-primary-700"
+                  >
+                    Profile Settings
+                  </Link>
+                  <hr className="my-1 border-neutral-200" />
+                  <button
+                    onClick={() => {
+                      setShowUserMenu(false);
+                      handleLogout();
+                    }}
+                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                  >
+                    Logout
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -128,63 +153,73 @@ const Navbar = () => {
         <div className="pt-2 pb-3 space-y-1 px-4">
           <Link
             to="/dashboard"
-            className={`flex items-center px-4 py-3 rounded-xl text-base font-semibold transition-all duration-200 ${
+            className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
               isActive('/dashboard')
-                ? 'bg-primary-500 text-white shadow-lg'
+                ? 'bg-primary-500 text-white'
                 : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
             }`}
           >
-            <span className="mr-3 text-xl">📊</span> Dashboard
+            Dashboard
           </Link>
           <Link
             to="/logs"
-            className={`flex items-center px-4 py-3 rounded-xl text-base font-semibold transition-all duration-200 ${
+            className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
               isActive('/logs')
-                ? 'bg-primary-500 text-white shadow-lg'
+                ? 'bg-primary-500 text-white'
                 : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
             }`}
           >
-            <span className="mr-3 text-xl">📝</span> Food Logs
+            Food Logs
           </Link>
           <Link
             to="/inventory"
-            className={`flex items-center px-4 py-3 rounded-xl text-base font-semibold transition-all duration-200 ${
+            className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
               isActive('/inventory')
-                ? 'bg-primary-500 text-white shadow-lg'
+                ? 'bg-primary-500 text-white'
                 : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
             }`}
           >
-            <span className="mr-3 text-xl">📦</span> Inventory
+            Inventory
           </Link>
           <Link
             to="/food-database"
-            className={`flex items-center px-4 py-3 rounded-xl text-base font-semibold transition-all duration-200 ${
+            className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
               isActive('/food-database')
-                ? 'bg-primary-500 text-white shadow-lg'
+                ? 'bg-primary-500 text-white'
                 : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
             }`}
           >
-            <span className="mr-3 text-xl">📖</span> Food Database
+            Food Database
           </Link>
           <Link
             to="/analytics"
-            className={`flex items-center px-4 py-3 rounded-xl text-base font-semibold transition-all duration-200 ${
+            className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
               isActive('/analytics')
-                ? 'bg-primary-500 text-white shadow-lg'
+                ? 'bg-primary-500 text-white'
                 : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
             }`}
           >
-            <span className="mr-3 text-xl">🧠</span> AI Analytics
+            Analytics
+          </Link>
+          <Link
+            to="/meal-planner"
+            className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+              isActive('/meal-planner')
+                ? 'bg-primary-500 text-white'
+                : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
+            }`}
+          >
+            Meal Planner
           </Link>
           <Link
             to="/resources"
-            className={`flex items-center px-4 py-3 rounded-xl text-base font-semibold transition-all duration-200 ${
+            className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
               isActive('/resources')
-                ? 'bg-primary-500 text-white shadow-lg'
+                ? 'bg-primary-500 text-white'
                 : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
             }`}
           >
-            <span className="mr-3 text-xl">📚</span> Resources
+            Resources
           </Link>
         </div>
       </div>
