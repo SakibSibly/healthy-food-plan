@@ -12,4 +12,5 @@ dependencies = [
     "pyjwt>=2.10.1",
     "pytest>=9.0.1",
     "sqlmodel>=0.0.27",
+    "openai>=1.54.0",
 ]

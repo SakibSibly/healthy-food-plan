@@ -15,6 +15,7 @@ import ImageUpload from './pages/ImageUpload';
 import FoodDatabase from './pages/FoodDatabase';
 import Analytics from './pages/Analytics';
 import MealPlanner from './pages/MealPlanner';
+import NourishBot from './pages/NourishBot';
 
 function App() {
   return (
@@ -103,6 +104,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <MealPlanner />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/nourishbot"
+              element={
+                <ProtectedRoute>
+                  <NourishBot />
                 </ProtectedRoute>
               }
             />

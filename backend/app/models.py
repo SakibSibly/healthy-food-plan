@@ -130,3 +130,40 @@ class MealPlanItemBase(SQLModel):
 
 class MealPlanItem(MealPlanItemBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True, index=True)
+
+
+# Chatbot Models
+
+class ChatSessionBase(SQLModel):
+    user_id: uuid.UUID = Field(foreign_key="user.id", ondelete="CASCADE")
+    title: str = Field(default="New Chat", max_length=200)
+    is_active: bool = Field(default=True)
+
+
+class ChatSession(ChatSessionBase, table=True):
+    id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True, index=True)
+    created_at: str = Field(max_length=30)
+    updated_at: str = Field(max_length=30)
+    user: User | None = Relationship(sa_relationship_kwargs={"lazy": "joined"})
+
+
+class ChatMessageBase(SQLModel):
+    session_id: uuid.UUID = Field(foreign_key="chatsession.id", ondelete="CASCADE")
+    role: str = Field(max_length=20)  # user, assistant, system
+    content: str = Field(max_length=10000)
+
+
+class ChatMessage(ChatMessageBase, table=True):
+    id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True, index=True)
+    created_at: str = Field(max_length=30)
+
+
+class ChatRequest(SQLModel):
+    message: str = Field(max_length=5000)
+    session_id: uuid.UUID | None = None
+
+
+class ChatResponse(SQLModel):
+    session_id: uuid.UUID
+    message: str
+    timestamp: str
