@@ -222,7 +222,7 @@ export default function Analytics() {
                             <div className="font-semibold capitalize mb-1">{pattern.category}</div>
                             <div className="text-sm">{pattern.message}</div>
                             <div className="text-xs mt-1 opacity-75">
-                              Actual: {pattern.actual} servings/day • Recommended: {pattern.recommended}
+                              Actual: {typeof pattern.actual === 'number' ? pattern.actual.toFixed(2) : pattern.actual} servings/day • Recommended: {pattern.recommended}
                             </div>
                           </div>
                         </div>
@@ -242,13 +242,13 @@ export default function Analytics() {
                     {Object.entries(insights.weekly_trends.daily_consumption).map(([day, total]) => (
                       <div key={day} className="bg-white rounded-lg p-4 text-center shadow-sm">
                         <div className="text-xs text-gray-600 mb-2">{day.substring(0, 3)}</div>
-                        <div className="text-2xl font-bold text-gray-800">{total}</div>
+                        <div className="text-2xl font-bold text-gray-800">{typeof total === 'number' ? total.toFixed(2) : total}</div>
                         <div className="text-xs text-gray-500 mt-1">items</div>
                       </div>
                     ))}
                   </div>
                   <div className="mt-4 text-center text-gray-600">
-                    Average: <span className="font-semibold">{insights.weekly_trends.average_daily}</span> items/day
+                    Average: <span className="font-semibold">{typeof insights.weekly_trends.average_daily === 'number' ? insights.weekly_trends.average_daily.toFixed(2) : insights.weekly_trends.average_daily}</span> items/day
                   </div>
                 </div>
 
@@ -346,11 +346,11 @@ export default function Analytics() {
                           </div>
                           <div>
                             <div className="text-gray-600">Usage Rate</div>
-                            <div className="font-semibold text-gray-800">{pred.usage_rate}/day</div>
+                            <div className="font-semibold text-gray-800">{typeof pred.usage_rate === 'number' ? pred.usage_rate.toFixed(2) : pred.usage_rate}/day</div>
                           </div>
                           <div>
                             <div className="text-gray-600">Est. Days to Consume</div>
-                            <div className="font-semibold text-gray-800">{pred.estimated_days_to_consume}</div>
+                            <div className="font-semibold text-gray-800">{typeof pred.estimated_days_to_consume === 'number' ? pred.estimated_days_to_consume.toFixed(2) : pred.estimated_days_to_consume}</div>
                           </div>
                         </div>
 
@@ -402,7 +402,7 @@ export default function Analytics() {
                       <div key={cat}>
                         <div className="flex justify-between mb-1">
                           <span className="font-semibold capitalize text-gray-700">{cat}</span>
-                          <span className="text-gray-600">{percent}%</span>
+                          <span className="text-gray-600">{typeof percent === 'number' ? percent.toFixed(2) : percent}%</span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-3">
                           <div
