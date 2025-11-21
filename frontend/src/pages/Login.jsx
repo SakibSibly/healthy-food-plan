@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import logo from '../assets/HFP-logo-full.png';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -35,7 +36,7 @@ const Login = () => {
         {/* Header */}
         <div className="text-center">
           <div className="inline-flex items-center justify-center p-5 bg-white rounded-3xl shadow-2xl mb-6 transform hover:scale-105 transition-all duration-300 border border-primary-100">
-            <span className="text-7xl animate-bounce-subtle">🥗</span>
+            <img src={logo} alt="HealthyFood Plan" className="h-20" />
           </div>
           <h1 className="text-5xl font-bold text-neutral-800 mb-3 tracking-tight">Welcome Back</h1>
           <p className="text-xl text-neutral-600">Sign in to continue your healthy journey</p>
