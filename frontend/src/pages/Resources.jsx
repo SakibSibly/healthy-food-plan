@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { resources, resourceCategories } from '../data/seedData';
+import { BookOpen, Search, Grid, List, X, Star, Video, FileText, Package, DollarSign, Recycle, Calendar, BarChart3, ArrowRight } from 'lucide-react';
 
 const Resources = () => {
   const [filterCategory, setFilterCategory] = useState('');
@@ -51,8 +52,8 @@ const Resources = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-[#3E7C59]/20">
         <div className="flex items-center space-x-4 mb-3">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-4xl shadow-xl">
-            <span>📚</span>
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-xl">
+            <BookOpen className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-5xl font-bold text-neutral-800 tracking-tight">Sustainable Resources</h1>
         </div>
@@ -65,23 +66,23 @@ const Resources = () => {
       <div className="card mb-6">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-2">
-            <span className="text-xl">🔍</span>
+            <Search className="w-5 h-5 text-gray-700" />
             <h2 className="text-lg font-bold text-gray-900">Find Resources</h2>
           </div>
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setViewMode('grid')}
-              className={`px-3 py-1 rounded ${viewMode === 'grid' ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+              className={`px-3 py-1 rounded flex items-center justify-center ${viewMode === 'grid' ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-700'}`}
               title="Grid View"
             >
-              ⊞
+              <Grid className="w-4 h-4" />
             </button>
             <button
               onClick={() => setViewMode('list')}
-              className={`px-3 py-1 rounded ${viewMode === 'list' ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+              className={`px-3 py-1 rounded flex items-center justify-center ${viewMode === 'list' ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-700'}`}
               title="List View"
             >
-              ☰
+              <List className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -90,7 +91,7 @@ const Resources = () => {
         <div className="mb-4">
           <input
             type="text"
-            placeholder="🔍 Search resources by title or description..."
+            placeholder="Search resources by title or description..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="input-field w-full"
@@ -125,8 +126,8 @@ const Resources = () => {
               className="input-field w-full"
             >
               <option value="">All Types</option>
-              <option value="article">📄 Articles</option>
-              <option value="video">🎥 Videos</option>
+              <option value="article">Articles</option>
+              <option value="video">Videos</option>
             </select>
           </div>
 
@@ -151,9 +152,9 @@ const Resources = () => {
                   setFilterType('');
                   setSearchQuery('');
                 }}
-                className="btn-secondary whitespace-nowrap"
+                className="btn-secondary whitespace-nowrap flex items-center gap-2"
               >
-                ✕ Clear All
+                <X className="w-4 h-4" /> Clear All
               </button>
             </div>
           )}
@@ -176,7 +177,7 @@ const Resources = () => {
       {savedResources.length > 0 && (
         <div className="card mb-6 bg-gradient-to-r from-accent-50 to-primary-50 border-2 border-accent-200">
           <div className="flex items-center space-x-2 mb-3">
-            <span className="text-2xl">⭐</span>
+            <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
             <h2 className="text-lg font-bold text-gray-900">Your Saved Resources ({savedResources.length})</h2>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -186,9 +187,9 @@ const Resources = () => {
                 <button
                   key={resource.id}
                   onClick={() => navigate(`/resources/${resource.id}`)}
-                  className="px-3 py-2 bg-white rounded-lg border border-[#3E7C59]/30 hover:border-[#3E7C59] hover:shadow-md transition-all text-sm font-medium text-gray-700 hover:text-[#3E7C59]"
+                  className="px-3 py-2 bg-white rounded-lg border border-[#3E7C59]/30 hover:border-[#3E7C59] hover:shadow-md transition-all text-sm font-medium text-gray-700 hover:text-[#3E7C59] flex items-center gap-2"
                 >
-                  {resource.type === 'video' ? '🎥' : '📄'} {resource.title}
+                  {resource.type === 'video' ? <Video className="w-4 h-4" /> : <FileText className="w-4 h-4" />} {resource.title}
                 </button>
               ))}
           </div>
@@ -203,8 +204,8 @@ const Resources = () => {
           if (viewMode === 'list') {
             return (
               <div key={resource.id} className="card hover:shadow-lg transition-all hover:border-primary-200 flex items-center gap-6">
-                <div className="text-5xl flex-shrink-0">
-                  {resource.type === 'video' ? '🎥' : '📄'}
+                <div className="w-12 h-12 flex-shrink-0 text-gray-700">
+                  {resource.type === 'video' ? <Video className="w-full h-full" /> : <FileText className="w-full h-full" />}
                 </div>
                 
                 <div className="flex-1">
@@ -212,10 +213,10 @@ const Resources = () => {
                     <h3 className="text-lg font-bold text-gray-900">{resource.title}</h3>
                     <button
                       onClick={() => toggleSaveResource(resource.id)}
-                      className={`ml-2 text-2xl transition-transform hover:scale-125 ${isSaved ? 'text-yellow-500' : 'text-gray-300 hover:text-yellow-400'}`}
+                      className={`ml-2 transition-transform hover:scale-125 ${isSaved ? 'text-yellow-500' : 'text-gray-300 hover:text-yellow-400'}`}
                       title={isSaved ? 'Remove from saved' : 'Save for later'}
                     >
-                      {isSaved ? '⭐' : '☆'}
+                      <Star className={`w-6 h-6 ${isSaved ? 'fill-yellow-500' : ''}`} />
                     </button>
                   </div>
                   
@@ -244,9 +245,9 @@ const Resources = () => {
                 
                 <button
                   onClick={() => navigate(`/resources/${resource.id}`)}
-                  className="btn-primary whitespace-nowrap"
+                  className="btn-primary whitespace-nowrap flex items-center gap-2"
                 >
-                  View →
+                  View <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             );
@@ -256,15 +257,15 @@ const Resources = () => {
             <div key={resource.id} className="card hover:shadow-xl transition-all hover:border-primary-200 hover:-translate-y-1 group relative flex flex-col">
               <button
                 onClick={() => toggleSaveResource(resource.id)}
-                className={`absolute top-4 right-4 text-2xl transition-transform hover:scale-125 z-10 ${isSaved ? 'text-yellow-500' : 'text-gray-300 group-hover:text-yellow-400'}`}
+                className={`absolute top-4 right-4 transition-transform hover:scale-125 z-10 ${isSaved ? 'text-yellow-500' : 'text-gray-300 group-hover:text-yellow-400'}`}
                 title={isSaved ? 'Remove from saved' : 'Save for later'}
               >
-                {isSaved ? '⭐' : '☆'}
+                <Star className={`w-6 h-6 ${isSaved ? 'fill-yellow-500' : ''}`} />
               </button>
               
               <div className="flex items-start justify-between mb-4">
-                <div className="text-4xl">
-                  {resource.type === 'video' ? '🎥' : '📄'}
+                <div className="w-10 h-10 text-gray-700">
+                  {resource.type === 'video' ? <Video className="w-full h-full" /> : <FileText className="w-full h-full" />}
                 </div>
                 <div className="flex flex-col gap-2 mr-8">
                   <span className="badge bg-accent-100 text-accent-800 text-xs">
@@ -298,9 +299,9 @@ const Resources = () => {
 
               <button
                 onClick={() => navigate(`/resources/${resource.id}`)}
-                className="inline-block w-full text-center btn-primary mt-auto"
+                className="inline-block w-full text-center btn-primary mt-auto flex items-center justify-center gap-2"
               >
-                View Resource →
+                View Resource <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           );
@@ -309,7 +310,7 @@ const Resources = () => {
 
       {filteredResources.length === 0 && (
         <div className="card text-center py-16 bg-slate-50 border-2 border-dashed border-gray-200">
-          <div className="text-6xl mb-4">🔍</div>
+          <Search className="w-16 h-16 text-gray-400 mx-auto mb-4" />
           <p className="text-lg font-semibold text-gray-900 mb-2">No resources found</p>
           <p className="text-gray-600 mb-6">
             {searchQuery 
@@ -340,11 +341,11 @@ const Resources = () => {
                 className="card text-center hover:shadow-lg transition-all cursor-pointer hover:border-accent-300"
                 onClick={() => setFilterCategory(category)}
               >
-                <div className="text-3xl mb-2">
-                  {category === 'storage' && '📦'}
-                  {category === 'budget' && '💰'}
-                  {category === 'waste-reduction' && '♻️'}
-                  {category === 'meal-planning' && '📅'}
+                <div className="w-8 h-8 mx-auto mb-2 text-gray-700">
+                  {category === 'storage' && <Package className="w-full h-full" />}
+                  {category === 'budget' && <DollarSign className="w-full h-full" />}
+                  {category === 'waste-reduction' && <Recycle className="w-full h-full" />}
+                  {category === 'meal-planning' && <Calendar className="w-full h-full" />}
                 </div>
                 <p className="text-sm font-semibold text-gray-700">
                   {category.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
@@ -358,8 +359,8 @@ const Resources = () => {
       )}
       <div className="card mt-6">
         <div className="section-header pb-4 border-b border-gray-100">
-          <div className="icon-circle bg-[#3E7C59]/10 text-[#3E7C59]">
-            <span>📊</span>
+          <div className="icon-circle bg-[#3E7C59]/10 text-[#3E7C59] flex items-center justify-center">
+            <BarChart3 className="w-6 h-6" />
           </div>
           <h2 className="text-lg font-bold text-gray-900">Resource Statistics</h2>
         </div>

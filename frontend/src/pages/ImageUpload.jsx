@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { imageAPI } from '../services/api';
+import { Camera, Upload, Info, Download, Trash2, CheckCircle } from 'lucide-react';
 
 const ImageUpload = () => {
   const [images, setImages] = useState([]);
@@ -93,8 +94,8 @@ const ImageUpload = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="page-header">
         <div className="flex items-center space-x-4 mb-3">
-          <div className="icon-circle bg-blue-100 text-blue-600 w-16 h-16 text-3xl">
-            <span>📸</span>
+          <div className="icon-circle bg-blue-100 text-blue-600 w-16 h-16 flex items-center justify-center">
+            <Camera className="w-8 h-8" />
           </div>
           <h1 className="text-4xl font-bold text-gray-900">Image Upload</h1>
         </div>
@@ -106,7 +107,7 @@ const ImageUpload = () => {
       {/* Info Banner */}
       <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-5 mb-6 shadow-sm">
         <div className="flex items-start">
-          <span className="text-3xl mr-4">ℹ️</span>
+          <Info className="w-8 h-8 text-blue-600 mr-4 flex-shrink-0" />
           <div>
             <h3 className="font-bold text-blue-900 mb-2 text-lg">AI Processing Coming Soon</h3>
             <p className="text-sm text-blue-800">
@@ -121,7 +122,7 @@ const ImageUpload = () => {
       {/* Upload Form */}
       <div className="card mb-6 border-2 border-primary-100">
         <div className="flex items-center space-x-2 mb-6">
-          <span className="text-2xl">📤</span>
+          <Upload className="w-6 h-6 text-gray-700" />
           <h2 className="text-xl font-bold text-gray-900">Upload New Image</h2>
         </div>
         <form onSubmit={handleUpload} className="space-y-5">

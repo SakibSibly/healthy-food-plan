@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
+import { Utensils, Sparkles, FileText, Target, DollarSign, Calendar, Package, Trash2, Eye, Loader2, ShoppingCart, Lightbulb, Sun, Moon, Cookie, Sunrise } from 'lucide-react';
 
 export default function MealPlanner() {
   const { user } = useAuth();
@@ -107,8 +108,8 @@ export default function MealPlanner() {
       {/* Page Header */}
       <div className="bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-[#3E7C59]/20">
         <div className="flex items-center space-x-4 mb-3">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-4xl shadow-xl">
-            <span>🍽️</span>
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-xl">
+            <Utensils className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-5xl font-bold text-neutral-800 tracking-tight">AI Meal Planner</h1>
         </div>
@@ -119,23 +120,23 @@ export default function MealPlanner() {
       <div className="flex space-x-2 mb-6 bg-white rounded-2xl p-2 shadow-md">
         <button
           onClick={() => setActiveTab('create')}
-          className={`flex-1 px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
+          className={`flex-1 px-6 py-3 rounded-xl font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${
             activeTab === 'create'
               ? 'bg-[#3E7C59] text-white shadow-lg'
               : 'text-neutral-600 hover:bg-[#3E7C59]/10 hover:text-[#3E7C59]'
           }`}
         >
-          <span className="mr-2">✨</span> Create Plan
+          <Sparkles className="w-5 h-5" /> Create Plan
         </button>
         <button
           onClick={() => setActiveTab('plans')}
-          className={`flex-1 px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
+          className={`flex-1 px-6 py-3 rounded-xl font-semibold transition-all duration-200 flex items-center justify-center gap-2 ${
             activeTab === 'plans'
               ? 'bg-[#3E7C59] text-white shadow-lg'
               : 'text-neutral-600 hover:bg-[#3E7C59]/10 hover:text-[#3E7C59]'
           }`}
         >
-          <span className="mr-2">📋</span> My Plans
+          <FileText className="w-5 h-5" /> My Plans
         </button>
       </div>
       
@@ -143,8 +144,8 @@ export default function MealPlanner() {
       {activeTab === 'create' && (
         <div className="card">
           <div className="flex items-center space-x-3 mb-6 pb-4 border-b-2 border-[#3E7C59]/20">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-2xl shadow-lg">
-              <span>🎯</span>
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-lg">
+              <Target className="w-6 h-6 text-white" />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-neutral-800">Generate Optimized Meal Plan</h2>
@@ -157,7 +158,7 @@ export default function MealPlanner() {
           <div className="space-y-6">
             <div className="bg-[#3E7C59]/5 rounded-2xl p-5 border border-[#3E7C59]/20">
               <label className="block text-sm font-bold text-neutral-800 mb-3 flex items-center">
-                <span className="text-xl mr-2">💰</span> Weekly Budget (৳)
+                <DollarSign className="w-5 h-5 mr-2" /> Weekly Budget (৳)
               </label>
               <input
                 type="number"
@@ -171,7 +172,7 @@ export default function MealPlanner() {
             
             <div className="bg-[#3E7C59]/5 rounded-2xl p-5 border border-[#3E7C59]/20">
               <label className="block text-sm font-bold text-neutral-800 mb-3 flex items-center">
-                <span className="text-xl mr-2">📅</span> Plan Duration (days)
+                <Calendar className="w-5 h-5 mr-2" /> Plan Duration (days)
               </label>
               <select
                 value={durationDays}
@@ -194,9 +195,12 @@ export default function MealPlanner() {
                   onChange={(e) => setUseInventory(e.target.checked)}
                   className="h-5 w-5 text-[#3E7C59] focus:ring-[#3E7C59] border-[#3E7C59]/30 rounded mt-1"
                 />
-                <label htmlFor="useInventory" className="ml-3 block text-sm font-semibold text-neutral-800">
-                  <span className="text-lg mr-1">📦</span> Use items from my inventory
-                  <span className="block text-xs text-neutral-600 mt-1 font-normal">Recommended to reduce waste and save money</span>
+                <label htmlFor="useInventory" className="ml-3 block text-sm font-semibold text-neutral-800 flex items-start">
+                  <Package className="w-5 h-5 mr-2 flex-shrink-0 mt-0.5" /> 
+                  <span>
+                    Use items from my inventory
+                    <span className="block text-xs text-neutral-600 mt-1 font-normal">Recommended to reduce waste and save money</span>
+                  </span>
                 </label>
               </div>
             </div>
@@ -207,16 +211,13 @@ export default function MealPlanner() {
               className="w-full bg-gradient-to-r from-[#3E7C59] to-[#2d5a42] text-white py-4 px-6 rounded-xl hover:shadow-xl disabled:bg-gray-400 disabled:cursor-not-allowed font-bold text-lg transition-all duration-200 transform hover:scale-[1.02]"
             >
               {optimizing ? (
-                <span className="flex items-center justify-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
+                <span className="flex items-center justify-center gap-2">
+                  <Loader2 className="w-5 h-5 animate-spin" />
                   Generating Your Meal Plan...
                 </span>
               ) : (
-                <span className="flex items-center justify-center">
-                  <span className="mr-2 text-xl">✨</span> Generate Meal Plan
+                <span className="flex items-center justify-center gap-2">
+                  <Sparkles className="w-5 h-5" /> Generate Meal Plan
                 </span>
               )}
             </button>
@@ -234,14 +235,14 @@ export default function MealPlanner() {
             </div>
           ) : mealPlans.length === 0 ? (
             <div className="card text-center py-12">
-              <div className="text-6xl mb-4">🍽️</div>
+              <Utensils className="w-16 h-16 text-gray-400 mx-auto mb-4" />
               <h3 className="text-2xl font-bold text-neutral-800 mb-2">No Meal Plans Yet</h3>
               <p className="text-neutral-600 mb-6">Start by creating your first AI-optimized meal plan!</p>
               <button
                 onClick={() => setActiveTab('create')}
-                className="bg-gradient-to-r from-[#3E7C59] to-[#2d5a42] text-white py-3 px-8 rounded-xl hover:shadow-xl font-bold transition-all duration-200 inline-flex items-center"
+                className="bg-gradient-to-r from-[#3E7C59] to-[#2d5a42] text-white py-3 px-8 rounded-xl hover:shadow-xl font-bold transition-all duration-200 inline-flex items-center gap-2"
               >
-                <span className="mr-2 text-xl">✨</span> Create Your First Plan
+                <Sparkles className="w-5 h-5" /> Create Your First Plan
               </button>
             </div>
           ) : (
@@ -250,29 +251,29 @@ export default function MealPlanner() {
                 <div className="flex flex-col lg:flex-row justify-between items-start gap-4">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-xl shadow-lg">
-                        <span>📋</span>
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-lg">
+                        <FileText className="w-5 h-5 text-white" />
                       </div>
                       <h3 className="text-2xl font-bold text-neutral-800">{plan.name}</h3>
                     </div>
                     <p className="text-neutral-600 mb-4 ml-13">{plan.description}</p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 ml-13">
                       <div className="flex items-center bg-[#3E7C59]/5 rounded-xl p-3 border border-[#3E7C59]/20">
-                        <span className="text-2xl mr-2">📅</span>
+                        <Calendar className="w-6 h-6 mr-2 text-[#3E7C59]" />
                         <div>
                           <p className="text-xs text-neutral-600 font-semibold">Duration</p>
                           <p className="text-sm font-bold text-neutral-800">{plan.start_date} to {plan.end_date}</p>
                         </div>
                       </div>
                       <div className="flex items-center bg-[#3E7C59]/5 rounded-xl p-3 border border-[#3E7C59]/20">
-                        <span className="text-2xl mr-2">💰</span>
+                        <DollarSign className="w-6 h-6 mr-2 text-[#3E7C59]" />
                         <div>
                           <p className="text-xs text-neutral-600 font-semibold">Budget</p>
                           <p className="text-sm font-bold text-neutral-800">৳{plan.total_cost.toFixed(2)} / ৳{plan.target_budget.toFixed(2)}</p>
                         </div>
                       </div>
                       <div className="flex items-center bg-[#3E7C59]/5 rounded-xl p-3 border border-[#3E7C59]/20">
-                        <span className="text-2xl mr-2">🍽️</span>
+                        <Utensils className="w-6 h-6 mr-2 text-[#3E7C59]" />
                         <div>
                           <p className="text-xs text-neutral-600 font-semibold">Meals</p>
                           <p className="text-sm font-bold text-neutral-800">{plan.items_count} planned</p>
@@ -283,15 +284,15 @@ export default function MealPlanner() {
                   <div className="flex flex-col gap-2 lg:ml-4">
                     <button
                       onClick={() => handleViewPlan(plan.id)}
-                      className="bg-gradient-to-r from-[#3E7C59] to-[#2d5a42] text-white py-2 px-6 rounded-xl hover:shadow-lg font-semibold transition-all duration-200 whitespace-nowrap"
+                      className="bg-gradient-to-r from-[#3E7C59] to-[#2d5a42] text-white py-2 px-6 rounded-xl hover:shadow-lg font-semibold transition-all duration-200 whitespace-nowrap flex items-center gap-2"
                     >
-                      👁️ View Details
+                      <Eye className="w-4 h-4" /> View Details
                     </button>
                     <button
                       onClick={() => handleDeletePlan(plan.id)}
-                      className="bg-red-50 text-red-600 border-2 border-red-200 py-2 px-6 rounded-xl hover:bg-red-100 hover:border-red-300 font-semibold transition-all duration-200 whitespace-nowrap"
+                      className="bg-red-50 text-red-600 border-2 border-red-200 py-2 px-6 rounded-xl hover:bg-red-100 hover:border-red-300 font-semibold transition-all duration-200 whitespace-nowrap flex items-center gap-2"
                     >
-                      🗑️ Delete
+                      <Trash2 className="w-4 h-4" /> Delete
                     </button>
                   </div>
                 </div>
@@ -364,8 +365,8 @@ export default function MealPlanner() {
           {optimizationResult?.inventory_usage && (
             <div className="card bg-gradient-to-br from-[#3E7C59]/5 to-[#2d5a42]/5 border-2 border-[#3E7C59]/20">
               <div className="flex items-center space-x-3 mb-6 pb-4 border-b-2 border-[#3E7C59]/20">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-2xl shadow-lg">
-                  <span>📦</span>
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-lg">
+                  <Utensils className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-neutral-800">Inventory Usage</h3>
               </div>
@@ -414,11 +415,11 @@ export default function MealPlanner() {
                     {['breakfast', 'lunch', 'dinner', 'snack'].map(mealType => (
                       <div key={mealType} className="bg-gradient-to-br from-[#3E7C59]/5 to-[#2d5a42]/5 rounded-xl p-4 border-2 border-[#3E7C59]/20">
                         <div className="text-xs font-bold text-[#3E7C59] uppercase tracking-wider mb-3 flex items-center">
-                          <span className="mr-1">
-                            {mealType === 'breakfast' && '🌅'}
-                            {mealType === 'lunch' && '🌞'}
-                            {mealType === 'dinner' && '🌙'}
-                            {mealType === 'snack' && '🍪'}
+                          <span className="mr-1 w-4 h-4">
+                            {mealType === 'breakfast' && <Sunrise className="w-full h-full" />}
+                            {mealType === 'lunch' && <Sun className="w-full h-full" />}
+                            {mealType === 'dinner' && <Moon className="w-full h-full" />}
+                            {mealType === 'snack' && <Cookie className="w-full h-full" />}
                           </span>
                           {mealType}
                         </div>
@@ -459,8 +460,8 @@ export default function MealPlanner() {
           {optimizationResult?.shopping_list && optimizationResult.shopping_list.length > 0 && (
             <div className="card">
               <div className="flex items-center space-x-3 mb-6 pb-4 border-b-2 border-[#3E7C59]/20">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-2xl shadow-lg">
-                  <span>🛒</span>
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-lg">
+                  <ShoppingCart className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-neutral-800">Shopping List</h3>
               </div>
@@ -492,8 +493,8 @@ export default function MealPlanner() {
           {optimizationResult?.alternatives && optimizationResult.alternatives.length > 0 && (
             <div className="card">
               <div className="flex items-center space-x-3 mb-6 pb-4 border-b-2 border-[#3E7C59]/20">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-2xl shadow-lg">
-                  <span>💡</span>
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-lg">
+                  <Lightbulb className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-neutral-800">Cost-Saving Alternatives</h3>
               </div>

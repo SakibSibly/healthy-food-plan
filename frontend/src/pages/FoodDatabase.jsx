@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { foodItems, categories } from '../data/seedData';
 import { useNavigate } from 'react-router-dom';
+import { BookOpen, Info, Search, Milk, Apple, Carrot, Drumstick, Wheat, Utensils, Clock, DollarSign, Plus, ArrowRight, X, Minus } from 'lucide-react';
 
 const FoodDatabase = () => {
   const [filterCategory, setFilterCategory] = useState('');
@@ -34,14 +35,15 @@ const FoodDatabase = () => {
     });
 
   const getCategoryIcon = (category) => {
+    const iconProps = { className: "w-full h-full" };
     const icons = {
-      dairy: '🥛',
-      fruit: '🍎',
-      vegetable: '🥕',
-      protein: '🍖',
-      grain: '🌾',
+      dairy: <Milk {...iconProps} />,
+      fruit: <Apple {...iconProps} />,
+      vegetable: <Carrot {...iconProps} />,
+      protein: <Drumstick {...iconProps} />,
+      grain: <Wheat {...iconProps} />,
     };
-    return icons[category] || '🍽️';
+    return icons[category] || <Utensils {...iconProps} />;
   };
 
   const getCategoryColor = (category) => {
@@ -60,8 +62,8 @@ const FoodDatabase = () => {
       {/* Page Header */}
       <div className="bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-[#3E7C59]/20">
         <div className="flex items-center space-x-4 mb-3">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-4xl shadow-xl">
-            <span>📖</span>
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-xl">
+            <BookOpen className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-5xl font-bold text-neutral-800 tracking-tight">Food Items Database</h1>
         </div>
@@ -73,7 +75,7 @@ const FoodDatabase = () => {
       {/* Info Banner */}
       <div className="bg-[#3E7C59]/10 border-l-4 border-[#3E7C59] rounded-lg p-5 mb-6 shadow-sm">
         <div className="flex items-start">
-          <span className="text-3xl mr-4">ℹ️</span>
+          <Info className="w-8 h-8 text-[#3E7C59] mr-4 flex-shrink-0" />
           <div>
             <h3 className="font-bold text-[#3E7C59] mb-2 text-lg">Seeded Food Database</h3>
             <p className="text-sm text-neutral-700">
@@ -88,7 +90,7 @@ const FoodDatabase = () => {
       {/* Search and Filters */}
       <div className="card mb-6">
         <div className="flex items-center space-x-2 mb-5">
-          <span className="text-2xl">🔍</span>
+          <Search className="w-6 h-6 text-gray-700" />
           <h2 className="text-xl font-bold text-gray-900">Search & Filter</h2>
         </div>
 
@@ -143,7 +145,10 @@ const FoodDatabase = () => {
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
-              {getCategoryIcon(cat)} {cat.charAt(0).toUpperCase() + cat.slice(1)} (
+              <span className="inline-flex items-center gap-1">
+                <span className="w-4 h-4">{getCategoryIcon(cat)}</span>
+                {cat.charAt(0).toUpperCase() + cat.slice(1)}
+              </span> (
               {foodItems.filter((item) => item.category === cat).length})
             </button>
           ))}
@@ -159,8 +164,8 @@ const FoodDatabase = () => {
       <div className="card">
         <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-primary-100">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-2xl shadow-lg">
-              <span>🍽️</span>
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-lg">
+              <Utensils className="w-6 h-6 text-white" />
             </div>
             <h2 className="text-2xl font-bold text-neutral-800">Food Items</h2>
           </div>
@@ -178,7 +183,7 @@ const FoodDatabase = () => {
                 className="border-2 border-neutral-200 rounded-2xl p-5 bg-white hover:border-primary-400 hover:shadow-xl transition-all cursor-pointer transform hover:scale-105"
               >
                 <div className="flex items-start justify-between mb-3">
-                  <div className="text-4xl">{getCategoryIcon(item.category)}</div>
+                  <div className="w-10 h-10 text-gray-700">{getCategoryIcon(item.category)}</div>
                   <span className={`badge bg-gradient-to-r ${getCategoryColor(item.category)} text-white text-xs`}>
                     {item.category}
                   </span>
@@ -259,7 +264,7 @@ const FoodDatabase = () => {
           >
             <div className="flex items-start justify-between mb-6">
               <div className="flex items-center space-x-4">
-                <div className="text-6xl">{getCategoryIcon(selectedItem.category)}</div>
+                <div className="w-16 h-16 text-gray-700">{getCategoryIcon(selectedItem.category)}</div>
                 <div>
                   <h2 className="text-3xl font-bold text-neutral-900 mb-2">{selectedItem.name}</h2>
                   <span className={`badge bg-gradient-to-r ${getCategoryColor(selectedItem.category)} text-white`}>
@@ -269,9 +274,9 @@ const FoodDatabase = () => {
               </div>
               <button
                 onClick={() => setSelectedItem(null)}
-                className="text-gray-400 hover:text-gray-600 text-3xl font-bold leading-none"
+                className="text-gray-400 hover:text-gray-600 font-bold leading-none"
               >
-                ×
+                <X className="w-8 h-8" />
               </button>
             </div>
 

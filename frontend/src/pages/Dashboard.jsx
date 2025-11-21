@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { foodLogAPI, inventoryAPI } from '../services/api';
 import { resources } from '../data/seedData';
 import bannerImage from '../assets/banner.png';
+import { FileText, Package, BookOpen, Brain, Calendar, MessageSquare, ArrowRight, Video } from 'lucide-react';
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -67,7 +68,7 @@ const Dashboard = () => {
               <p className="text-6xl font-bold text-white mb-2">{logs.length}</p>
               <p className="text-sm text-white/70 font-medium">Food entries tracked</p>
             </div>
-            <div className="text-7xl opacity-80 group-hover:opacity-100 transition-opacity">📝</div>
+            <FileText className="w-16 h-16 opacity-80 group-hover:opacity-100 transition-opacity" />
           </div>
         </div>
 
@@ -78,7 +79,7 @@ const Dashboard = () => {
               <p className="text-6xl font-bold text-white mb-2">{inventory.length}</p>
               <p className="text-sm text-white/70 font-medium">Items in stock</p>
             </div>
-            <div className="text-7xl opacity-80 group-hover:opacity-100 transition-opacity">📦</div>
+            <Package className="w-16 h-16 opacity-80 group-hover:opacity-100 transition-opacity" />
           </div>
         </div>
 
@@ -89,7 +90,7 @@ const Dashboard = () => {
               <p className="text-6xl font-bold text-white mb-2">{resources.length}</p>
               <p className="text-sm text-white/70 font-medium">Learning materials</p>
             </div>
-            <div className="text-7xl opacity-80 group-hover:opacity-100 transition-opacity">📚</div>
+            <BookOpen className="w-16 h-16 opacity-80 group-hover:opacity-100 transition-opacity" />
           </div>
         </div>
 
@@ -100,7 +101,7 @@ const Dashboard = () => {
               <p className="text-5xl font-bold text-white mb-2">NEW</p>
               <p className="text-sm text-white/70 font-medium">Pattern insights</p>
             </div>
-            <div className="text-7xl opacity-80 group-hover:opacity-100 transition-opacity">🧠</div>
+            <Brain className="w-16 h-16 opacity-80 group-hover:opacity-100 transition-opacity" />
           </div>
         </Link>
       </div>
@@ -110,14 +111,14 @@ const Dashboard = () => {
         <div className="card">
           <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-[#3E7C59]/20">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-2xl shadow-lg">
-                <span>📝</span>
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-lg">
+                <FileText className="w-6 h-6 text-white" />
               </div>
               <h2 className="text-2xl font-bold text-neutral-800">Recent Food Logs</h2>
             </div>
             <Link to="/logs" className="text-[#3E7C59] hover:text-[#2d5a42] text-sm font-bold flex items-center space-x-1 hover:underline">
               <span>View All</span>
-              <span>→</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
           {logs.length > 0 ? (
@@ -136,7 +137,7 @@ const Dashboard = () => {
             </div>
           ) : (
             <div className="empty-state">
-              <div className="text-6xl mb-4">📝</div>
+              <FileText className="w-16 h-16 mb-4 text-gray-400 mx-auto" />
               <p className="text-neutral-700 mb-4 font-semibold text-lg">No food logs yet. Start tracking your consumption!</p>
               <Link to="/logs" className="btn-primary inline-block">
                 Add First Log
@@ -149,14 +150,14 @@ const Dashboard = () => {
         <div className="card">
           <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-[#3E7C59]/20">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-2xl shadow-lg">
-                <span>📦</span>
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-lg">
+                <Package className="w-6 h-6 text-white" />
               </div>
               <h2 className="text-2xl font-bold text-neutral-800">Inventory</h2>
             </div>
             <Link to="/inventory" className="text-[#3E7C59] hover:text-[#2d5a42] text-sm font-bold flex items-center space-x-1 hover:underline">
               <span>Manage</span>
-              <span>→</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
           {inventory.length > 0 ? (
@@ -175,7 +176,7 @@ const Dashboard = () => {
             </div>
           ) : (
             <div className="empty-state">
-              <div className="text-6xl mb-4">📦</div>
+              <Package className="w-16 h-16 mb-4 text-gray-400 mx-auto" />
               <p className="text-neutral-700 mb-4 font-semibold text-lg">Your inventory is empty. Add items to track!</p>
               <Link to="/inventory" className="btn-primary inline-block">
                 Add Items
@@ -187,8 +188,8 @@ const Dashboard = () => {
         {/* Recommended Resources */}
         <div className="card lg:col-span-2">
           <div className="flex items-center space-x-3 mb-6 pb-4 border-b-2 border-[#3E7C59]/20">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-2xl shadow-lg">
-              <span>📚</span>
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-lg">
+              <BookOpen className="w-6 h-6 text-white" />
             </div>
             <h2 className="text-2xl font-bold text-neutral-800">Recommended Resources for You</h2>
           </div>
@@ -197,7 +198,9 @@ const Dashboard = () => {
               {recommendedResources.map((resource) => (
                 <div key={resource.id} className="bg-white border border-[#3E7C59]/20 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] cursor-pointer">
                   <div className="flex items-start justify-between mb-3">
-                    <div className="text-4xl">{resource.type === 'video' ? '🎥' : '📄'}</div>
+                    <div className="w-10 h-10 text-gray-700">
+                    {resource.type === 'video' ? <Video className="w-full h-full" /> : <FileText className="w-full h-full" />}
+                  </div>
                     <span className="badge bg-gradient-to-r from-[#3E7C59] to-[#2d5a42] text-white px-3 py-1 shadow-md">
                       {resource.category}
                     </span>
@@ -214,7 +217,7 @@ const Dashboard = () => {
             </div>
           ) : (
             <div className="empty-state">
-              <div className="text-6xl mb-4">📚</div>
+              <BookOpen className="w-16 h-16 mb-4 text-gray-400 mx-auto" />
               <p className="text-neutral-700 mb-4 font-semibold text-lg">Start logging food to get personalized recommendations!</p>
               <Link to="/logs" className="btn-secondary inline-block">
                 Add Your First Log
@@ -224,7 +227,7 @@ const Dashboard = () => {
           <div className="mt-6 text-center pt-6 border-t-2 border-[#3E7C59]/20">
             <Link to="/resources" className="text-[#3E7C59] hover:text-[#2d5a42] text-base font-bold flex items-center justify-center space-x-2 hover:underline">
               <span>View All Resources</span>
-              <span className="text-xl">→</span>
+              <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
         </div>

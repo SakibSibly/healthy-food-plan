@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { inventoryAPI } from '../services/api';
 import { foodItems, categories } from '../data/seedData';
+import { Package, Plus, X, Search, Edit, Trash2, Calendar, MessageSquare, BookOpen, CheckCircle, AlertTriangle, Clock, TrendingDown, FileText } from 'lucide-react';
 
 const Inventory = () => {
   const location = useLocation();
@@ -151,8 +152,8 @@ const Inventory = () => {
       <div className="flex items-center justify-between bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-[#3E7C59]/20">
         <div>
           <div className="flex items-center space-x-4 mb-3">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-4xl shadow-xl">
-              <span>📦</span>
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-xl">
+              <Package className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-5xl font-bold text-neutral-800 tracking-tight">Food Inventory</h1>
           </div>
@@ -171,9 +172,9 @@ const Inventory = () => {
               cost: '',
             });
           }}
-          className={showForm ? 'btn-secondary text-lg px-6 py-3' : 'btn-primary text-lg px-6 py-3'}
+          className={showForm ? 'btn-secondary text-lg px-6 py-3 flex items-center gap-2' : 'btn-primary text-lg px-6 py-3 flex items-center gap-2'}
         >
-          {showForm ? '✕ Cancel' : '+ Add Item'}
+          {showForm ? <><X className="w-5 h-5" /> Cancel</> : <><Plus className="w-5 h-5" /> Add Item</>}
         </button>
       </div>
 
@@ -303,8 +304,8 @@ const Inventory = () => {
             </div>
 
             <div className="flex space-x-3 pt-2">
-              <button type="submit" className="btn-primary flex-1">
-                {editingItem ? '💾 Update Item' : '➕ Add to Inventory'}
+              <button type="submit" className="btn-primary flex-1 flex items-center justify-center gap-2">
+                {editingItem ? <><CheckCircle className="w-5 h-5" /> Update Item</> : <><Plus className="w-5 h-5" /> Add to Inventory</>}
               </button>
               <button 
                 type="button" 
@@ -332,7 +333,7 @@ const Inventory = () => {
       {/* Filter */}
       <div className="card mb-6">
         <div className="flex items-center space-x-4">
-          <span className="text-xl">🔍</span>
+          <Search className="w-5 h-5 text-gray-700" />
           <label className="text-sm font-semibold text-neutral-700">Filter by Category:</label>
           <select
             value={filterCategory}
@@ -357,8 +358,8 @@ const Inventory = () => {
       {/* Inventory List */}
       <div className="card">
         <div className="flex items-center space-x-3 pb-6 border-b-2 border-primary-100 mb-6">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-3xl shadow-lg">
-            <span>📋</span>
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-lg">
+            <FileText className="w-7 h-7 text-white" />
           </div>
           <h2 className="text-2xl font-bold text-neutral-900">
             Inventory Items <span className="text-[#3E7C59]">({filteredInventory.length})</span>
@@ -415,14 +416,14 @@ const Inventory = () => {
                     </p>
                   )}
                   <div className="flex gap-3 pt-4 border-t-2 border-neutral-200 mt-auto">
-                    <button onClick={() => handleEdit(item)} className="btn-secondary text-sm py-2.5 px-5 flex-1">
-                      ✏️ Edit
+                    <button onClick={() => handleEdit(item)} className="btn-secondary text-sm py-2.5 px-5 flex-1 flex items-center justify-center gap-2">
+                      <Edit className="w-4 h-4" /> Edit
                     </button>
                     <button
                       onClick={() => handleDelete(item.id)}
-                      className="btn-danger text-sm py-2.5 px-5 flex-1"
+                      className="btn-danger text-sm py-2.5 px-5 flex-1 flex items-center justify-center gap-2"
                     >
-                      🗑️ Delete
+                      <Trash2 className="w-4 h-4" /> Delete
                     </button>
                   </div>
                 </div>
@@ -431,7 +432,7 @@ const Inventory = () => {
           </div>
         ) : (
           <div className="text-center py-16 bg-slate-50 rounded-lg border-2 border-dashed border-gray-200">
-            <div className="text-6xl mb-4">📦</div>
+            <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
             <p className="text-lg font-semibold text-gray-900 mb-2">No items in inventory</p>
             <p className="text-gray-600 mb-6">Start adding items to track your food storage!</p>
             <button
@@ -447,7 +448,7 @@ const Inventory = () => {
       {/* Seeded Food Items Reference */}
       <div className="card mt-6 bg-slate-50 border-2 border-gray-200">
         <div className="flex items-center space-x-2 mb-4">
-          <span className="text-2xl">📖</span>
+          <BookOpen className="w-6 h-6 text-gray-700" />
           <h2 className="text-xl font-bold text-gray-900">Common Food Items Reference</h2>
         </div>
         <p className="text-sm text-gray-600 mb-6">Use these as reference when adding items to your inventory</p>

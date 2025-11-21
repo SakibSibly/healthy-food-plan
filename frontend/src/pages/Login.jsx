@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import logo from '../assets/HFP-logo-full.png';
+import { Apple, BarChart3, Target } from 'lucide-react';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -126,15 +127,15 @@ const Login = () => {
         {/* Features */}
         <div className="grid grid-cols-3 gap-4 pt-4">
           <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-[#3E7C59]/20">
-            <div className="text-3xl mb-2">🍎</div>
+            <Apple className="w-8 h-8 mx-auto mb-2 text-[#3E7C59]" />
             <p className="text-xs font-semibold text-neutral-700">Track Meals</p>
           </div>
           <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-[#3E7C59]/20">
-            <div className="text-3xl mb-2">📊</div>
+            <BarChart3 className="w-8 h-8 mx-auto mb-2 text-[#3E7C59]" />
             <p className="text-xs font-semibold text-neutral-700">Analytics</p>
           </div>
           <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-[#3E7C59]/20">
-            <div className="text-3xl mb-2">🎯</div>
+            <Target className="w-8 h-8 mx-auto mb-2 text-[#3E7C59]" />
             <p className="text-xs font-semibold text-neutral-700">Goals</p>
           </div>
         </div>

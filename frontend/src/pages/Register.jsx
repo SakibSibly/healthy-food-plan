@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Salad, AlertTriangle } from 'lucide-react';
 
 const Register = () => {
   const [username, setUsername] = useState('');
@@ -50,7 +51,7 @@ const Register = () => {
       <div className="max-w-md w-full space-y-8 animate-fade-in">
         <div className="text-center">
           <div className="inline-flex items-center justify-center p-5 bg-white rounded-3xl shadow-2xl mb-6 transform hover:scale-105 transition-all duration-300 border border-[#3E7C59]/20">
-            <span className="text-7xl animate-bounce-subtle">🥗</span>
+            <Salad className="w-16 h-16 text-[#3E7C59] animate-bounce-subtle mx-auto" />
           </div>
           <h1 className="text-5xl font-bold text-neutral-800 mb-3 tracking-tight">Join HealthyFood</h1>
           <p className="text-xl text-neutral-600">Start your journey to reduce food waste</p>
@@ -61,7 +62,7 @@ const Register = () => {
             {error && (
               <div className="alert alert-error animate-slide-down">
                 <div className="flex items-start space-x-3">
-                  <span className="text-2xl">⚠️</span>
+                  <AlertTriangle className="w-6 h-6 flex-shrink-0 text-red-600" />
                   <div>
                     <p className="font-bold text-sm">Registration Error</p>
                     <p className="text-sm mt-1">{error}</p>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { User, CheckCircle2 } from 'lucide-react';
 import { profileAPI } from '../services/api';
 
 const Profile = () => {
@@ -58,8 +59,8 @@ const Profile = () => {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-[#3E7C59]/20">
         <div className="flex items-center space-x-4 mb-3">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-4xl shadow-xl">
-            <span>👤</span>
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-xl">
+            <User className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-5xl font-bold text-neutral-800 tracking-tight">Profile</h1>
         </div>
@@ -69,8 +70,8 @@ const Profile = () => {
       <div className="card">
         <div className="flex items-center justify-between mb-6 pb-6 border-b-2 border-[#3E7C59]/20">
           <div className="flex items-center space-x-5">
-            <div className="w-24 h-24 bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] rounded-full flex items-center justify-center text-5xl border-4 border-white shadow-xl transform hover:scale-105 transition-transform">
-              <span className="text-white">👤</span>
+            <div className="w-24 h-24 bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] rounded-full flex items-center justify-center border-4 border-white shadow-xl transform hover:scale-105 transition-transform">
+              <User className="w-12 h-12 text-white" />
             </div>
             <div>
               <h2 className="text-3xl font-bold text-neutral-900">{user?.username}</h2>
@@ -80,9 +81,9 @@ const Profile = () => {
           {!isEditing && (
             <button
               onClick={() => setIsEditing(true)}
-              className="btn-primary"
+              className="btn-primary flex items-center gap-2"
             >
-              ✏️ Edit Profile
+              <User className="w-4 h-4" /> Edit Profile
             </button>
           )}
         </div>

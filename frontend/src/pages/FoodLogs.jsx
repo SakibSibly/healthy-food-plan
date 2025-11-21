@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { foodLogAPI, inventoryAPI } from '../services/api';
 import { categories } from '../data/seedData';
+import { FileText, Plus, X, Trash2, Package, MessageSquare, CheckCircle, Clock, BarChart3 } from 'lucide-react';
 
 const FoodLogs = () => {
   const [logs, setLogs] = useState([]);
@@ -109,8 +110,8 @@ const FoodLogs = () => {
       <div className="flex items-center justify-between bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-[#3E7C59]/20">
         <div>
           <div className="flex items-center space-x-4 mb-3">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-4xl shadow-xl">
-              <span>📝</span>
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-xl">
+              <FileText className="w-8 h-8 text-white" />
             </div>
             <h1 className="text-5xl font-bold text-neutral-800 tracking-tight">Food Logs</h1>
           </div>
@@ -124,9 +125,9 @@ const FoodLogs = () => {
             }
             setShowForm(!showForm);
           }}
-          className={showForm ? 'btn-secondary text-lg px-6 py-3' : 'btn-primary text-lg px-6 py-3'}
+          className={showForm ? 'btn-secondary text-lg px-6 py-3 flex items-center gap-2' : 'btn-primary text-lg px-6 py-3 flex items-center gap-2'}
         >
-          {showForm ? '✕ Cancel' : '+ Log Consumption'}
+          {showForm ? <><X className="w-5 h-5" /> Cancel</> : <><Plus className="w-5 h-5" /> Log Consumption</>}
         </button>
       </div>
 
@@ -140,7 +141,7 @@ const FoodLogs = () => {
           
           {inventory.length === 0 ? (
             <div className="empty-state bg-secondary-50 border-secondary-300">
-              <div className="text-5xl mb-3">📦</div>
+              <Package className="w-12 h-12 text-gray-400 mx-auto mb-3" />
               <p className="text-lg font-semibold text-neutral-900 mb-2">No items in inventory</p>
               <p className="text-neutral-600">Add items to your inventory first before logging consumption</p>
             </div>
@@ -217,10 +218,10 @@ const FoodLogs = () => {
               <div className="flex space-x-3 pt-2">
                 <button 
                   type="submit" 
-                  className="btn-primary flex-1"
+                  className="btn-primary flex-1 flex items-center justify-center gap-2"
                   disabled={!selectedItem || (formData.quantity && parseFloat(formData.quantity) > selectedItem?.quantity)}
                 >
-                  ✅ Log Consumption
+                  <CheckCircle className="w-5 h-5" /> Log Consumption
                 </button>
                 <button 
                   type="button" 
@@ -246,8 +247,8 @@ const FoodLogs = () => {
       {/* Logs List */}
       <div className="card">
         <div className="section-header pb-6 border-b-2 border-primary-100">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-3xl shadow-lg">
-            <span>📋</span>
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center shadow-lg">
+            <FileText className="w-7 h-7 text-white" />
           </div>
           <h2 className="text-2xl font-bold text-neutral-900">Consumption History</h2>
         </div>
@@ -286,16 +287,16 @@ const FoodLogs = () => {
                 </div>
                 <button
                   onClick={() => handleDelete(log.id)}
-                  className="btn-danger text-xs ml-4 whitespace-nowrap"
+                  className="btn-danger text-xs ml-4 whitespace-nowrap flex items-center gap-2"
                 >
-                  🗑️ Delete
+                  <Trash2 className="w-4 h-4" /> Delete
                 </button>
               </div>
             ))}
           </div>
         ) : (
           <div className="empty-state">
-            <div className="text-6xl mb-4 animate-bounce-subtle">📝</div>
+            <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
             <p className="text-lg font-semibold text-neutral-900 mb-2">No food logs yet</p>
             <p className="text-neutral-600 mb-6">Start tracking your food consumption by adding your first log!</p>
             <button

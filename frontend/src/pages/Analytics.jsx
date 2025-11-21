@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import api from '../services/api';
+import { Brain, TrendingUp, AlertTriangle, Scale, Calendar, Info, BarChart3, Loader2 } from 'lucide-react';
 
 export default function Analytics() {
   const [insights, setInsights] = useState(null);
@@ -64,7 +65,7 @@ export default function Analytics() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-green-500 mx-auto"></div>
+          <Loader2 className="w-16 h-16 animate-spin text-green-500 mx-auto" />
           <p className="mt-4 text-gray-600">Analyzing consumption patterns...</p>
         </div>
       </div>
@@ -95,7 +96,7 @@ export default function Analytics() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-800 mb-2 flex items-center gap-3">
-            <span className="text-5xl">🧠</span>
+            <Brain className="w-12 h-12 text-purple-600" />
             AI Consumption Analytics
           </h1>
           <p className="text-gray-600">
@@ -162,25 +163,28 @@ export default function Analytics() {
           <div className="border-b border-gray-200">
             <div className="flex gap-4 px-6">
               {[
-                { id: 'overview', label: 'Overview', icon: '📊' },
-                { id: 'trends', label: 'Weekly Trends', icon: '📈' },
-                { id: 'waste', label: 'Waste Predictions', icon: '⚠️' },
-                { id: 'balance', label: 'Dietary Balance', icon: '⚖️' },
-                { id: 'heatmap', label: 'Heatmap', icon: '📅' }
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 py-4 px-4 border-b-2 transition-colors ${
-                    activeTab === tab.id
-                      ? 'border-green-500 text-green-600 font-semibold'
-                      : 'border-transparent text-gray-600 hover:text-gray-800'
-                  }`}
-                >
-                  <span className="text-xl">{tab.icon}</span>
-                  {tab.label}
-                </button>
-              ))}
+                { id: 'overview', label: 'Overview', icon: BarChart3 },
+                { id: 'trends', label: 'Weekly Trends', icon: TrendingUp },
+                { id: 'waste', label: 'Waste Predictions', icon: AlertTriangle },
+                { id: 'balance', label: 'Dietary Balance', icon: Scale },
+                { id: 'heatmap', label: 'Heatmap', icon: Calendar }
+              ].map((tab) => {
+                const IconComponent = tab.icon;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`flex items-center gap-2 py-4 px-4 border-b-2 transition-colors ${
+                      activeTab === tab.id
+                        ? 'border-green-500 text-green-600 font-semibold'
+                        : 'border-transparent text-gray-600 hover:text-gray-800'
+                    }`}
+                  >
+                    <IconComponent className="w-5 h-5" />
+                    {tab.label}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
