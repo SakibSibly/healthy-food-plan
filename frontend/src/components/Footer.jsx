@@ -28,7 +28,7 @@ const Footer = () => {
               </p>
               <p className="flex items-start">
                 <span className="font-medium mr-2">Email:</span>
-                <a href="mailto:contact@healthyfoodplan.com" className="hover:text-primary-600 transition-colors">
+                <a href="mailto:contact@healthyfoodplan.com" className="hover:text-[#3E7C59] transition-colors">
                   contact@healthyfoodplan.com
                 </a>
               </p>
@@ -38,7 +38,7 @@ const Footer = () => {
                   href="https://github.com/SakibSibly/healthy-food-plan" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:text-primary-600 transition-colors"
+                  className="hover:text-[#3E7C59] transition-colors"
                 >
                   SakibSibly/healthy-food-plan
                 </a>

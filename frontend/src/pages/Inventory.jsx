@@ -148,10 +148,10 @@ const Inventory = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="flex items-center justify-between bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-accent-200">
+      <div className="flex items-center justify-between bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-[#3E7C59]/20">
         <div>
           <div className="flex items-center space-x-4 mb-3">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center text-4xl shadow-xl">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-4xl shadow-xl">
               <span>📦</span>
             </div>
             <h1 className="text-5xl font-bold text-neutral-800 tracking-tight">Food Inventory</h1>
@@ -260,7 +260,7 @@ const Inventory = () => {
 
               <div className="form-group">
                 <label className="form-label">
-                  Cost ($)
+                  Cost (৳)
                 </label>
                 <input
                   type="number"
@@ -357,11 +357,11 @@ const Inventory = () => {
       {/* Inventory List */}
       <div className="card">
         <div className="flex items-center space-x-3 pb-6 border-b-2 border-primary-100 mb-6">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center text-3xl shadow-lg">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-3xl shadow-lg">
             <span>📋</span>
           </div>
           <h2 className="text-2xl font-bold text-neutral-900">
-            Inventory Items <span className="text-primary-600">({filteredInventory.length})</span>
+            Inventory Items <span className="text-[#3E7C59]">({filteredInventory.length})</span>
           </h2>
         </div>
         {filteredInventory.length > 0 ? (
@@ -384,11 +384,11 @@ const Inventory = () => {
                 >
                   <div className="flex items-start justify-between mb-4">
                     <h3 className="font-bold text-neutral-900 text-xl flex-1 pr-2">{item.name}</h3>
-                    <span className="badge bg-gradient-to-r from-accent-500 to-accent-600 text-white text-xs flex-shrink-0">
+                    <span className="badge bg-gradient-to-r from-[#3E7C59] to-[#2d5a42] text-white text-xs flex-shrink-0">
                       {item.category}
                     </span>
                   </div>
-                  <p className="text-sm text-neutral-700 font-semibold mb-4">📊 Quantity: <span className="text-primary-600 text-lg">{item.quantity}</span></p>
+                  <p className="text-sm text-neutral-700 font-semibold mb-4">📊 Quantity: <span className="text-[#3E7C59] text-lg">{item.quantity}</span></p>
                   {item.expirationDate && (
                     <div className="text-sm mb-3 p-3 bg-white rounded-lg border border-gray-100">
                       <p className="text-gray-600 mb-1">

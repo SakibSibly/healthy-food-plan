@@ -49,7 +49,7 @@ const Register = () => {
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 animate-fade-in">
         <div className="text-center">
-          <div className="inline-flex items-center justify-center p-5 bg-white rounded-3xl shadow-2xl mb-6 transform hover:scale-105 transition-all duration-300 border border-primary-100">
+          <div className="inline-flex items-center justify-center p-5 bg-white rounded-3xl shadow-2xl mb-6 transform hover:scale-105 transition-all duration-300 border border-[#3E7C59]/20">
             <span className="text-7xl animate-bounce-subtle">🥗</span>
           </div>
           <h1 className="text-5xl font-bold text-neutral-800 mb-3 tracking-tight">Join HealthyFood</h1>

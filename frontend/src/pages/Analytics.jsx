@@ -48,7 +48,7 @@ export default function Analytics() {
       case 'medium':
         return 'bg-yellow-500';
       case 'low':
-        return 'bg-green-500';
+        return 'bg-[#3E7C59]';
       default:
         return 'bg-gray-500';
     }
@@ -80,7 +80,7 @@ export default function Analytics() {
           <p className="text-gray-600 text-center mb-4">{error}</p>
           <button
             onClick={fetchInsights}
-            className="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition-colors"
+            className="w-full bg-[#3E7C59] text-white py-2 rounded-lg hover:bg-[#2d5a42] transition-colors"
           >
             Try Again
           </button>
@@ -276,7 +276,7 @@ export default function Analytics() {
                         <div className="font-semibold text-gray-700 mb-2">{day}</div>
                         <div className="flex flex-wrap gap-2">
                           {Object.entries(categories).map(([cat, qty]) => (
-                            <span key={cat} className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">
+                            <span key={cat} className="px-3 py-1 bg-[#3E7C59]/10 text-[#3E7C59] rounded-full text-sm">
                               {cat}: {qty}
                             </span>
                           ))}
@@ -307,7 +307,7 @@ export default function Analytics() {
                 </div>
 
                 {insights.waste_predictions.predictions.length === 0 ? (
-                  <div className="bg-green-50 border border-green-200 rounded-xl p-8 text-center">
+                  <div className="bg-[#3E7C59]/10 border border-[#3E7C59]/30 rounded-xl p-8 text-center">
                     <div className="text-6xl text-green-600 mx-auto mb-4">✅</div>
                     <h3 className="text-xl font-bold text-green-900 mb-2">No Waste Risks Detected!</h3>
                     <p className="text-green-700">All your items are being consumed efficiently.</p>
@@ -375,7 +375,7 @@ export default function Analytics() {
               <div className="space-y-6">
                 <div className={`rounded-xl p-6 ${
                   insights.balance_check.balanced
-                    ? 'bg-green-50 border border-green-200'
+                    ? 'bg-[#3E7C59]/10 border border-[#3E7C59]/30'
                     : 'bg-yellow-50 border border-yellow-200'
                 }`}>
                   <div className="flex items-center gap-3 mb-4">
@@ -507,7 +507,7 @@ export default function Analytics() {
                       <span>Medium</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 bg-green-600 rounded"></div>
+                      <div className="w-6 h-6 bg-[#3E7C59] rounded"></div>
                       <span>High</span>
                     </div>
                   </div>

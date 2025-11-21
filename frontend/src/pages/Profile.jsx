@@ -56,9 +56,9 @@ const Profile = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-primary-200">
+      <div className="bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-[#3E7C59]/20">
         <div className="flex items-center space-x-4 mb-3">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-4xl shadow-xl">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-4xl shadow-xl">
             <span>👤</span>
           </div>
           <h1 className="text-5xl font-bold text-neutral-800 tracking-tight">Profile</h1>
@@ -67,9 +67,9 @@ const Profile = () => {
       </div>
 
       <div className="card">
-        <div className="flex items-center justify-between mb-6 pb-6 border-b-2 border-primary-100">
+        <div className="flex items-center justify-between mb-6 pb-6 border-b-2 border-[#3E7C59]/20">
           <div className="flex items-center space-x-5">
-            <div className="w-24 h-24 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full flex items-center justify-center text-5xl border-4 border-white shadow-xl transform hover:scale-105 transition-transform">
+            <div className="w-24 h-24 bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] rounded-full flex items-center justify-center text-5xl border-4 border-white shadow-xl transform hover:scale-105 transition-transform">
               <span className="text-white">👤</span>
             </div>
             <div>
@@ -184,10 +184,10 @@ const Profile = () => {
                   className="input-field disabled:bg-gray-100"
                 >
                   <option value="">Select budget range</option>
-                  <option value="<200">Less than $200</option>
-                  <option value="200-400">$200 - $400</option>
-                  <option value="400-600">$400 - $600</option>
-                  <option value="600+">$600+</option>
+                  <option value="<200">Less than ৳200</option>
+                  <option value="200-400">৳200 - ৳400</option>
+                  <option value="400-600">৳400 - ৳600</option>
+                  <option value="600+">৳600+</option>
                 </select>
               </div>
 

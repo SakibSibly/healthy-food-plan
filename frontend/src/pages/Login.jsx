@@ -35,7 +35,7 @@ const Login = () => {
       <div className="max-w-md w-full space-y-8 animate-fade-in">
         {/* Header */}
         <div className="text-center">
-          <div className="inline-flex items-center justify-center p-5 bg-white rounded-3xl shadow-2xl mb-6 transform hover:scale-105 transition-all duration-300 border border-primary-100">
+          <div className="inline-flex items-center justify-center p-5 bg-white rounded-3xl shadow-2xl mb-6 transform hover:scale-105 transition-all duration-300 border border-[#3E7C59]/20">
             <img src={logo} alt="HealthyFood Plan" className="h-20" />
           </div>
           <h1 className="text-5xl font-bold text-neutral-800 mb-3 tracking-tight">Welcome Back</h1>
@@ -125,15 +125,15 @@ const Login = () => {
 
         {/* Features */}
         <div className="grid grid-cols-3 gap-4 pt-4">
-          <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-primary-100/50">
+          <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-[#3E7C59]/20">
             <div className="text-3xl mb-2">🍎</div>
             <p className="text-xs font-semibold text-neutral-700">Track Meals</p>
           </div>
-          <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-primary-100/50">
+          <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-[#3E7C59]/20">
             <div className="text-3xl mb-2">📊</div>
             <p className="text-xs font-semibold text-neutral-700">Analytics</p>
           </div>
-          <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-primary-100/50">
+          <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-2xl border border-[#3E7C59]/20">
             <div className="text-3xl mb-2">🎯</div>
             <p className="text-xs font-semibold text-neutral-700">Goals</p>
           </div>

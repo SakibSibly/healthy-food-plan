@@ -49,9 +49,9 @@ const Resources = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-secondary-200">
+      <div className="bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-[#3E7C59]/20">
         <div className="flex items-center space-x-4 mb-3">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary-500 to-secondary-600 flex items-center justify-center text-4xl shadow-xl">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-4xl shadow-xl">
             <span>📚</span>
           </div>
           <h1 className="text-5xl font-bold text-neutral-800 tracking-tight">Sustainable Resources</h1>
@@ -162,10 +162,10 @@ const Resources = () => {
         {/* Results Count */}
         <div className="mt-4 pt-4 border-t border-gray-200">
           <p className="text-sm text-gray-600">
-            Showing <span className="font-bold text-primary-600">{filteredResources.length}</span> of {resources.length} resources
+            Showing <span className="font-bold text-[#3E7C59]">{filteredResources.length}</span> of {resources.length} resources
             {savedResources.length > 0 && (
               <span className="ml-2">
-                • <span className="font-bold text-accent-600">{savedResources.length}</span> saved
+                • <span className="font-bold text-[#3E7C59]">{savedResources.length}</span> saved
               </span>
             )}
           </p>
@@ -186,7 +186,7 @@ const Resources = () => {
                 <button
                   key={resource.id}
                   onClick={() => navigate(`/resources/${resource.id}`)}
-                  className="px-3 py-2 bg-white rounded-lg border border-accent-300 hover:border-accent-500 hover:shadow-md transition-all text-sm font-medium text-gray-700 hover:text-accent-700"
+                  className="px-3 py-2 bg-white rounded-lg border border-[#3E7C59]/30 hover:border-[#3E7C59] hover:shadow-md transition-all text-sm font-medium text-gray-700 hover:text-[#3E7C59]"
                 >
                   {resource.type === 'video' ? '🎥' : '📄'} {resource.title}
                 </button>
@@ -349,7 +349,7 @@ const Resources = () => {
                 <p className="text-sm font-semibold text-gray-700">
                   {category.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
                 </p>
-                <p className="text-2xl font-bold text-primary-600 mt-1">{count}</p>
+                <p className="text-2xl font-bold text-[#3E7C59] mt-1">{count}</p>
                 <p className="text-xs text-gray-500">resources</p>
               </div>
             );
@@ -358,14 +358,14 @@ const Resources = () => {
       )}
       <div className="card mt-6">
         <div className="section-header pb-4 border-b border-gray-100">
-          <div className="icon-circle bg-accent-100 text-accent-600">
+          <div className="icon-circle bg-[#3E7C59]/10 text-[#3E7C59]">
             <span>📊</span>
           </div>
           <h2 className="text-lg font-bold text-gray-900">Resource Statistics</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="text-center p-4 bg-slate-50 rounded-xl border border-gray-100">
-            <p className="text-4xl font-bold text-primary-600 mb-2">{resources.length}</p>
+            <p className="text-4xl font-bold text-[#3E7C59] mb-2">{resources.length}</p>
             <p className="text-sm font-semibold text-gray-600">Total Resources</p>
           </div>
           <div className="text-center p-4 bg-blue-50 rounded-xl border border-blue-100">
@@ -375,7 +375,7 @@ const Resources = () => {
             <p className="text-sm font-semibold text-gray-600">Articles</p>
           </div>
           <div className="text-center p-4 bg-accent-50 rounded-xl border border-accent-100">
-            <p className="text-4xl font-bold text-accent-600 mb-2">
+            <p className="text-4xl font-bold text-[#3E7C59] mb-2">
               {resources.filter((r) => r.type === 'video').length}
             </p>
             <p className="text-sm font-semibold text-gray-600">Videos</p>

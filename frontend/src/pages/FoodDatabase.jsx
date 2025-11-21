@@ -58,9 +58,9 @@ const FoodDatabase = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Page Header */}
-      <div className="bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-primary-200">
+      <div className="bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-[#3E7C59]/20">
         <div className="flex items-center space-x-4 mb-3">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-4xl shadow-xl">
+          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-4xl shadow-xl">
             <span>📖</span>
           </div>
           <h1 className="text-5xl font-bold text-neutral-800 tracking-tight">Food Items Database</h1>
@@ -71,12 +71,12 @@ const FoodDatabase = () => {
       </div>
 
       {/* Info Banner */}
-      <div className="bg-primary-50 border-l-4 border-primary-500 rounded-lg p-5 mb-6 shadow-sm">
+      <div className="bg-[#3E7C59]/10 border-l-4 border-[#3E7C59] rounded-lg p-5 mb-6 shadow-sm">
         <div className="flex items-start">
           <span className="text-3xl mr-4">ℹ️</span>
           <div>
-            <h3 className="font-bold text-primary-900 mb-2 text-lg">Seeded Food Database</h3>
-            <p className="text-sm text-primary-800">
+            <h3 className="font-bold text-[#3E7C59] mb-2 text-lg">Seeded Food Database</h3>
+            <p className="text-sm text-neutral-700">
               This database contains {foodItems.length} pre-populated common food items with typical 
               expiration periods and cost estimates. Use this as a reference when adding items to your 
               personal inventory.
@@ -127,8 +127,8 @@ const FoodDatabase = () => {
             onClick={() => setFilterCategory('')}
             className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
               filterCategory === ''
-                ? 'bg-primary-600 text-white shadow-md'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-[#3E7C59] text-white shadow-md'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
             }`}
           >
             All ({foodItems.length})
@@ -139,8 +139,8 @@ const FoodDatabase = () => {
               onClick={() => setFilterCategory(cat)}
               className={`px-4 py-2 rounded-lg font-semibold text-sm transition-all ${
                 filterCategory === cat
-                  ? 'bg-primary-600 text-white shadow-md'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-[#3E7C59] text-white shadow-md'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
               {getCategoryIcon(cat)} {cat.charAt(0).toUpperCase() + cat.slice(1)} (
@@ -150,7 +150,7 @@ const FoodDatabase = () => {
         </div>
 
         <div className="mt-4 text-sm text-gray-600">
-          Showing <span className="font-bold text-primary-600">{filteredItems.length}</span> of{' '}
+          Showing <span className="font-bold text-[#3E7C59]">{filteredItems.length}</span> of{' '}
           <span className="font-bold">{foodItems.length}</span> items
         </div>
       </div>
@@ -159,7 +159,7 @@ const FoodDatabase = () => {
       <div className="card">
         <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-primary-100">
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-2xl shadow-lg">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-2xl shadow-lg">
               <span>🍽️</span>
             </div>
             <h2 className="text-2xl font-bold text-neutral-800">Food Items</h2>
@@ -194,7 +194,7 @@ const FoodDatabase = () => {
 
                   <div className="flex items-center justify-between p-2 bg-green-50 rounded-lg">
                     <span className="text-gray-700 font-medium">💰 Avg. Cost:</span>
-                    <span className="font-bold text-green-600">${item.costPerUnit.toFixed(2)}</span>
+                    <span className="font-bold text-green-600">৳{item.costPerUnit.toFixed(2)}</span>
                   </div>
                 </div>
 
@@ -289,7 +289,7 @@ const FoodDatabase = () => {
               <div className="p-4 bg-green-50 rounded-2xl border-2 border-green-200">
                 <div className="flex items-center justify-between">
                   <span className="text-gray-700 font-bold text-lg">💰 Average Cost</span>
-                  <span className="text-2xl font-bold text-green-600">${selectedItem.costPerUnit.toFixed(2)}</span>
+                  <span className="text-2xl font-bold text-green-600">৳{selectedItem.costPerUnit.toFixed(2)}</span>
                 </div>
                 <p className="text-sm text-gray-600 mt-2">
                   Estimated cost per unit (prices may vary by location)

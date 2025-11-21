@@ -35,8 +35,8 @@ const Navbar = () => {
               to="/dashboard"
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/dashboard')
-                  ? 'bg-primary-500 text-white'
-                  : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
+                  ? 'bg-[#3E7C59] text-white'
+                  : 'text-neutral-700 hover:bg-[#3E7C59]/10 hover:text-[#3E7C59]'
               }`}
             >
               Dashboard
@@ -45,8 +45,8 @@ const Navbar = () => {
               to="/logs"
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/logs')
-                  ? 'bg-primary-500 text-white'
-                  : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
+                  ? 'bg-[#3E7C59] text-white'
+                  : 'text-neutral-700 hover:bg-[#3E7C59]/10 hover:text-[#3E7C59]'
               }`}
             >
               Logs
@@ -55,8 +55,8 @@ const Navbar = () => {
               to="/inventory"
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/inventory')
-                  ? 'bg-primary-500 text-white'
-                  : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
+                  ? 'bg-[#3E7C59] text-white'
+                  : 'text-neutral-700 hover:bg-[#3E7C59]/10 hover:text-[#3E7C59]'
               }`}
             >
               Inventory
@@ -65,8 +65,8 @@ const Navbar = () => {
               to="/food-database"
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/food-database')
-                  ? 'bg-primary-500 text-white'
-                  : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
+                  ? 'bg-[#3E7C59] text-white'
+                  : 'text-neutral-700 hover:bg-[#3E7C59]/10 hover:text-[#3E7C59]'
               }`}
             >
               Food DB
@@ -75,8 +75,8 @@ const Navbar = () => {
               to="/analytics"
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/analytics')
-                  ? 'bg-primary-500 text-white'
-                  : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
+                  ? 'bg-[#3E7C59] text-white'
+                  : 'text-neutral-700 hover:bg-[#3E7C59]/10 hover:text-[#3E7C59]'
               }`}
             >
               Analytics
@@ -85,8 +85,8 @@ const Navbar = () => {
               to="/meal-planner"
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/meal-planner')
-                  ? 'bg-primary-500 text-white'
-                  : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
+                  ? 'bg-[#3E7C59] text-white'
+                  : 'text-neutral-700 hover:bg-[#3E7C59]/10 hover:text-[#3E7C59]'
               }`}
             >
               Planner
@@ -95,8 +95,8 @@ const Navbar = () => {
               to="/resources"
               className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 isActive('/resources')
-                  ? 'bg-primary-500 text-white'
-                  : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
+                  ? 'bg-[#3E7C59] text-white'
+                  : 'text-neutral-700 hover:bg-[#3E7C59]/10 hover:text-[#3E7C59]'
               }`}
             >
               Resources
@@ -107,9 +107,9 @@ const Navbar = () => {
           <div className="relative">
             <button
               onClick={() => setShowUserMenu(!showUserMenu)}
-              className="flex items-center space-x-2 text-neutral-700 hover:text-primary-700 px-3 py-2 rounded-lg hover:bg-primary-50 text-sm font-medium transition-all duration-200"
+              className="flex items-center space-x-2 text-neutral-700 hover:text-[#3E7C59] px-3 py-2 rounded-lg hover:bg-[#3E7C59]/10 text-sm font-medium transition-all duration-200">
             >
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white font-bold text-sm">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-white font-bold text-sm">
                 {user?.username?.charAt(0).toUpperCase() || 'U'}
               </div>
               <span className="hidden sm:inline">{user?.username || 'User'}</span>
@@ -127,7 +127,7 @@ const Navbar = () => {
                   <Link
                     to="/profile"
                     onClick={() => setShowUserMenu(false)}
-                    className="block px-4 py-2 text-sm text-neutral-700 hover:bg-primary-50 hover:text-primary-700"
+                    className="block px-4 py-2 text-sm text-neutral-700 hover:bg-[#3E7C59]/10 hover:text-[#3E7C59]">
                   >
                     Profile Settings
                   </Link>
@@ -155,9 +155,9 @@ const Navbar = () => {
             to="/dashboard"
             className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
               isActive('/dashboard')
-                ? 'bg-primary-500 text-white'
-                : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
-            }`}
+                ? 'bg-[#3E7C59] text-white'
+                : 'text-neutral-600 hover:bg-[#3E7C59]/10 hover:text-neutral-900'
+            }`}>
           >
             Dashboard
           </Link>
@@ -165,9 +165,9 @@ const Navbar = () => {
             to="/logs"
             className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
               isActive('/logs')
-                ? 'bg-primary-500 text-white'
-                : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
-            }`}
+                ? 'bg-[#3E7C59] text-white'
+                : 'text-neutral-600 hover:bg-[#3E7C59]/10 hover:text-neutral-900'
+            }`}>
           >
             Food Logs
           </Link>
@@ -175,9 +175,9 @@ const Navbar = () => {
             to="/inventory"
             className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
               isActive('/inventory')
-                ? 'bg-primary-500 text-white'
-                : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
-            }`}
+                ? 'bg-[#3E7C59] text-white'
+                : 'text-neutral-600 hover:bg-[#3E7C59]/10 hover:text-neutral-900'
+            }`}>
           >
             Inventory
           </Link>
@@ -185,9 +185,9 @@ const Navbar = () => {
             to="/food-database"
             className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
               isActive('/food-database')
-                ? 'bg-primary-500 text-white'
-                : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
-            }`}
+                ? 'bg-[#3E7C59] text-white'
+                : 'text-neutral-600 hover:bg-[#3E7C59]/10 hover:text-neutral-900'
+            }`}>
           >
             Food Database
           </Link>
@@ -195,9 +195,9 @@ const Navbar = () => {
             to="/analytics"
             className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
               isActive('/analytics')
-                ? 'bg-primary-500 text-white'
-                : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
-            }`}
+                ? 'bg-[#3E7C59] text-white'
+                : 'text-neutral-600 hover:bg-[#3E7C59]/10 hover:text-neutral-900'
+            }`}>
           >
             Analytics
           </Link>
@@ -205,9 +205,9 @@ const Navbar = () => {
             to="/meal-planner"
             className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
               isActive('/meal-planner')
-                ? 'bg-primary-500 text-white'
-                : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
-            }`}
+                ? 'bg-[#3E7C59] text-white'
+                : 'text-neutral-600 hover:bg-[#3E7C59]/10 hover:text-neutral-900'
+            }`}>
           >
             Meal Planner
           </Link>
@@ -215,9 +215,9 @@ const Navbar = () => {
             to="/resources"
             className={`flex items-center px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${
               isActive('/resources')
-                ? 'bg-primary-500 text-white'
-                : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
-            }`}
+                ? 'bg-[#3E7C59] text-white'
+                : 'text-neutral-600 hover:bg-[#3E7C59]/10 hover:text-neutral-900'
+            }`}>
           >
             Resources
           </Link>

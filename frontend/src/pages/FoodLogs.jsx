@@ -106,10 +106,10 @@ const FoodLogs = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Page Header */}
-      <div className="flex items-center justify-between bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-primary-200">
+      <div className="flex items-center justify-between bg-white rounded-3xl p-8 mb-8 shadow-2xl border-2 border-[#3E7C59]/20">
         <div>
           <div className="flex items-center space-x-4 mb-3">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-4xl shadow-xl">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-4xl shadow-xl">
               <span>📝</span>
             </div>
             <h1 className="text-5xl font-bold text-neutral-800 tracking-tight">Food Logs</h1>
@@ -246,7 +246,7 @@ const FoodLogs = () => {
       {/* Logs List */}
       <div className="card">
         <div className="section-header pb-6 border-b-2 border-primary-100">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-3xl shadow-lg">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-3xl shadow-lg">
             <span>📋</span>
           </div>
           <h2 className="text-2xl font-bold text-neutral-900">Consumption History</h2>
@@ -261,7 +261,7 @@ const FoodLogs = () => {
                 <div className="flex-1">
                   <div className="flex items-center space-x-3 mb-2">
                     <h3 className="font-bold text-neutral-900 text-lg">{log.item_name}</h3>
-                    <span className="badge bg-gradient-to-r from-primary-500 to-primary-600 text-white">
+                    <span className="badge bg-gradient-to-r from-[#3E7C59] to-[#2d5a42] text-white">
                       {log.category}
                     </span>
                   </div>

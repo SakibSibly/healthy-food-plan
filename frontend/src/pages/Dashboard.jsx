@@ -108,14 +108,14 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Logs */}
         <div className="card">
-          <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-primary-100">
+          <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-[#3E7C59]/20">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center text-2xl shadow-lg">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-2xl shadow-lg">
                 <span>📝</span>
               </div>
               <h2 className="text-2xl font-bold text-neutral-800">Recent Food Logs</h2>
             </div>
-            <Link to="/logs" className="text-primary-600 hover:text-primary-700 text-sm font-bold flex items-center space-x-1 hover:underline">
+            <Link to="/logs" className="text-[#3E7C59] hover:text-[#2d5a42] text-sm font-bold flex items-center space-x-1 hover:underline">
               <span>View All</span>
               <span>→</span>
             </Link>
@@ -123,12 +123,12 @@ const Dashboard = () => {
           {logs.length > 0 ? (
             <div className="space-y-3">
               {logs.map((log) => (
-                <div key={log.id} className="flex items-center justify-between p-5 bg-gradient-to-r from-white to-primary-50/30 rounded-2xl border border-primary-100 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+                <div key={log.id} className="flex items-center justify-between p-5 bg-gradient-to-r from-white to-[#3E7C59]/5 rounded-2xl border border-[#3E7C59]/20 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
                   <div className="flex-1">
                     <p className="font-bold text-neutral-800 text-lg">{log.item_name}</p>
                     <p className="text-sm text-neutral-600 mt-1 font-medium">{log.quantity} {log.unit}</p>
                   </div>
-                  <span className="badge bg-gradient-to-r from-primary-500 to-primary-600 text-white px-4 py-2 ml-3 shadow-md">
+                  <span className="badge bg-gradient-to-r from-[#3E7C59] to-[#2d5a42] text-white px-4 py-2 ml-3 shadow-md">
                     {log.category}
                   </span>
                 </div>
@@ -147,14 +147,14 @@ const Dashboard = () => {
 
         {/* Inventory Overview */}
         <div className="card">
-          <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-primary-100">
+          <div className="flex items-center justify-between mb-6 pb-4 border-b-2 border-[#3E7C59]/20">
             <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accent-500 to-accent-600 flex items-center justify-center text-2xl shadow-lg">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-2xl shadow-lg">
                 <span>📦</span>
               </div>
               <h2 className="text-2xl font-bold text-neutral-800">Inventory</h2>
             </div>
-            <Link to="/inventory" className="text-primary-600 hover:text-primary-700 text-sm font-bold flex items-center space-x-1 hover:underline">
+            <Link to="/inventory" className="text-[#3E7C59] hover:text-[#2d5a42] text-sm font-bold flex items-center space-x-1 hover:underline">
               <span>Manage</span>
               <span>→</span>
             </Link>
@@ -162,12 +162,12 @@ const Dashboard = () => {
           {inventory.length > 0 ? (
             <div className="space-y-3">
               {inventory.map((item) => (
-                <div key={item.id} className="flex items-center justify-between p-5 bg-gradient-to-r from-white to-accent-50/30 rounded-2xl border border-accent-100 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+                <div key={item.id} className="flex items-center justify-between p-5 bg-gradient-to-r from-white to-[#3E7C59]/5 rounded-2xl border border-[#3E7C59]/20 hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
                   <div className="flex-1">
                     <p className="font-bold text-neutral-800 text-lg">{item.name}</p>
                     <p className="text-sm text-neutral-600 mt-1 font-medium">Qty: {item.quantity}</p>
                   </div>
-                  <span className="badge bg-gradient-to-r from-accent-500 to-accent-600 text-white px-4 py-2 ml-3 shadow-md">
+                  <span className="badge bg-gradient-to-r from-[#3E7C59] to-[#2d5a42] text-white px-4 py-2 ml-3 shadow-md">
                     {item.category}
                   </span>
                 </div>
@@ -186,8 +186,8 @@ const Dashboard = () => {
 
         {/* Recommended Resources */}
         <div className="card lg:col-span-2">
-          <div className="flex items-center space-x-3 mb-6 pb-4 border-b-2 border-primary-100">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-secondary-500 to-secondary-600 flex items-center justify-center text-2xl shadow-lg">
+          <div className="flex items-center space-x-3 mb-6 pb-4 border-b-2 border-[#3E7C59]/20">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3E7C59] to-[#2d5a42] flex items-center justify-center text-2xl shadow-lg">
               <span>📚</span>
             </div>
             <h2 className="text-2xl font-bold text-neutral-800">Recommended Resources for You</h2>
@@ -195,16 +195,16 @@ const Dashboard = () => {
           {recommendedResources.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {recommendedResources.map((resource) => (
-                <div key={resource.id} className="bg-white border border-primary-100 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] cursor-pointer">
+                <div key={resource.id} className="bg-white border border-[#3E7C59]/20 rounded-2xl p-6 hover:shadow-xl transition-all duration-300 hover:scale-[1.02] cursor-pointer">
                   <div className="flex items-start justify-between mb-3">
                     <div className="text-4xl">{resource.type === 'video' ? '🎥' : '📄'}</div>
-                    <span className="badge bg-gradient-to-r from-secondary-500 to-secondary-600 text-white px-3 py-1 shadow-md">
+                    <span className="badge bg-gradient-to-r from-[#3E7C59] to-[#2d5a42] text-white px-3 py-1 shadow-md">
                       {resource.category}
                     </span>
                   </div>
                   <h3 className="font-bold text-neutral-800 mb-2 text-lg">{resource.title}</h3>
                   <p className="text-sm text-neutral-600 mb-3 line-clamp-2">{resource.description.substring(0, 100)}...</p>
-                  <div className="pt-3 border-t-2 border-primary-100">
+                  <div className="pt-3 border-t-2 border-[#3E7C59]/20">
                     <p className="text-xs text-neutral-600 font-semibold">
                       Related: {resource.relatedCategories.slice(0, 2).join(', ')}
                     </p>
@@ -221,8 +221,8 @@ const Dashboard = () => {
               </Link>
             </div>
           )}
-          <div className="mt-6 text-center pt-6 border-t-2 border-primary-100">
-            <Link to="/resources" className="text-primary-600 hover:text-primary-700 text-base font-bold flex items-center justify-center space-x-2 hover:underline">
+          <div className="mt-6 text-center pt-6 border-t-2 border-[#3E7C59]/20">
+            <Link to="/resources" className="text-[#3E7C59] hover:text-[#2d5a42] text-base font-bold flex items-center justify-center space-x-2 hover:underline">
               <span>View All Resources</span>
               <span className="text-xl">→</span>
             </Link>
