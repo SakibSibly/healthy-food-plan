@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from app.api.routes import login, users, meal_plans, chatbot
+from app.api.routes import login, users, meal_plans, chatbot, utils
+from app.api.routes import login, users, meal_plans, utils
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
@@ -24,3 +25,4 @@ app.include_router(login.router)
 app.include_router(users.router)
 app.include_router(meal_plans.router)
 app.include_router(chatbot.router)
+app.include_router(utils.router)

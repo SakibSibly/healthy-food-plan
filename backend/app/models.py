@@ -20,13 +20,16 @@ class UserBase(SQLModel):
 class User(UserBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True, index=True)
     hashed_password: str = Field(default=None, max_length=256)
-    inventory_items: list["InventoryItem"] = Relationship(back_populates="user", sa_relationship_kwargs={"lazy": "joined"})
-    food_logs: list["FoodLog"] = Relationship(back_populates="user", sa_relationship_kwargs={"lazy": "joined"})
+    inventory_items: list["InventoryItem"] = Relationship(back_populates="user")
+    food_logs: list["FoodLog"] = Relationship(back_populates="user")
+    meal_plans: list["MealPlan"] = Relationship(back_populates="user")
 
 
-class UserWithInventory(UserBase):
+class UserWithUtils(UserBase):
     id: uuid.UUID
     inventory_items: list["InventoryItem"] = []
+    food_logs: list["FoodLog"] = []
+    meal_plans: list["MealPlan"] = []
 
 
 class UserPublic(UserBase):
@@ -54,7 +57,7 @@ class InventoryItemBase(SQLModel):
 
 class InventoryItem(InventoryItemBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True, index=True)
-    user: User | None = Relationship(back_populates="inventory_items", sa_relationship_kwargs={"lazy": "joined"})
+    user: User | None = Relationship(back_populates="inventory_items")
 
 
 class TokenResponse(SQLModel):
@@ -86,7 +89,7 @@ class FoodLog(FoodLogBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True, index=True)
     user_id: uuid.UUID = Field(foreign_key="user.id", ondelete="CASCADE")
     created_at: str = Field(max_length=30)
-    user: User | None = Relationship(back_populates="food_logs", sa_relationship_kwargs={"lazy": "joined"})
+    user: User | None = Relationship(back_populates="food_logs")
 
 
 # Meal Planning Models
@@ -105,7 +108,7 @@ class MealPlanBase(SQLModel):
 class MealPlan(MealPlanBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True, index=True)
     created_at: str = Field(max_length=30)
-    user: User | None = Relationship(sa_relationship_kwargs={"lazy": "joined"})
+    user: User | None = Relationship(back_populates="meal_plans")
 
 
 class MealPlanItemBase(SQLModel):
