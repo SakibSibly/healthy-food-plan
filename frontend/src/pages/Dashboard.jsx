@@ -59,7 +59,7 @@ const Dashboard = () => {
       </div>
 
       {/* Stats Cards with enhanced design */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
         <div className="stat-card group cursor-pointer bg-gradient-to-br from-primary-500 to-primary-600 text-white">
           <div className="flex items-center justify-between">
             <div>
@@ -92,6 +92,17 @@ const Dashboard = () => {
             <div className="text-7xl opacity-80 group-hover:opacity-100 transition-opacity">📚</div>
           </div>
         </div>
+
+        <Link to="/analytics" className="stat-card group cursor-pointer bg-gradient-to-br from-purple-500 to-indigo-600 text-white hover:scale-105 transition-transform">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-bold text-white/80 uppercase tracking-wider mb-2">AI Analytics</p>
+              <p className="text-5xl font-bold text-white mb-2">NEW</p>
+              <p className="text-sm text-white/70 font-medium">Pattern insights</p>
+            </div>
+            <div className="text-7xl opacity-80 group-hover:opacity-100 transition-opacity">🧠</div>
+          </div>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

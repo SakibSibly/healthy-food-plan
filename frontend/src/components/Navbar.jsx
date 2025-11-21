@@ -70,6 +70,26 @@ const Navbar = () => {
               <span className="mr-2 text-lg">📖</span> Food DB
             </Link>
             <Link
+              to="/analytics"
+              className={`inline-flex items-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                isActive('/analytics')
+                  ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30'
+                  : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
+              }`}
+            >
+              <span className="mr-2 text-lg">🧠</span> Analytics
+            </Link>
+            <Link
+              to="/meal-planner"
+              className={`inline-flex items-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
+                isActive('/meal-planner')
+                  ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30'
+                  : 'text-neutral-700 hover:bg-primary-50 hover:text-primary-700'
+              }`}
+            >
+              <span className="mr-2 text-lg">🍽️</span> Meal Planner
+            </Link>
+            <Link
               to="/resources"
               className={`inline-flex items-center px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
                 isActive('/resources')
@@ -145,6 +165,16 @@ const Navbar = () => {
             }`}
           >
             <span className="mr-3 text-xl">📖</span> Food Database
+          </Link>
+          <Link
+            to="/analytics"
+            className={`flex items-center px-4 py-3 rounded-xl text-base font-semibold transition-all duration-200 ${
+              isActive('/analytics')
+                ? 'bg-primary-500 text-white shadow-lg'
+                : 'text-neutral-600 hover:bg-primary-50 hover:text-neutral-900'
+            }`}
+          >
+            <span className="mr-3 text-xl">🧠</span> AI Analytics
           </Link>
           <Link
             to="/resources"

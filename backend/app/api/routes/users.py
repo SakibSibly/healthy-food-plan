@@ -4,6 +4,7 @@ from fastapi import HTTPException
 from app.models import User, InventoryItem, FoodLog
 from app.api.deps import get_current_user
 from app.db import get_session
+from app.analytics import ConsumptionAnalyzer
 from typing import Annotated
 from sqlmodel import Session, select, Field, SQLModel
 import uuid
@@ -232,3 +233,62 @@ def delete_food_log(
     session.delete(log)
     session.commit()
     return None
+
+
+# Analytics endpoint
+
+@router.get("/analytics/insights")
+def get_consumption_insights(
+    current_user: Annotated[User, Depends(get_current_user)],
+    session: Annotated[Session, Depends(get_session)]):
+    """
+    Get AI-powered consumption pattern insights.
+    
+    Analyzes user's food logs and inventory to provide:
+    - Weekly consumption trends
+    - Over/under consumption patterns
+    - Waste predictions (3-7 day window)
+    - Dietary balance checks
+    - Heatmap visualization data
+    """
+    # Fetch user's food logs
+    food_logs_stmt = select(FoodLog).where(FoodLog.user_id == current_user.id).order_by(FoodLog.created_at.desc())
+    food_logs = session.exec(food_logs_stmt).unique().all()
+    
+    # Fetch user's inventory
+    inventory_stmt = select(InventoryItem).where(InventoryItem.user_id == current_user.id)
+    inventory_items = session.exec(inventory_stmt).unique().all()
+    
+    # Convert to dicts for analyzer
+    food_logs_data = [
+        {
+            'id': str(log.id),
+            'item_name': log.item_name,
+            'category': log.category,
+            'quantity': log.quantity,
+            'consumed_at': log.consumed_at,
+            'created_at': log.created_at if isinstance(log.created_at, str) else (log.created_at.isoformat() if log.created_at else None),
+            'notes': log.notes
+        }
+        for log in food_logs
+    ]
+    
+    inventory_data = [
+        {
+            'id': str(item.id),
+            'name': item.name,
+            'category': item.category,
+            'quantity': item.quantity,
+            'cost': item.cost,
+            'expiration_date': item.expiration_date,
+            'notes': item.notes
+        }
+        for item in inventory_items
+    ]
+    
+    # Run analytics
+    analyzer = ConsumptionAnalyzer(food_logs_data, inventory_data)
+    insights = analyzer.analyze_all()
+    
+    return insights
+

@@ -13,6 +13,8 @@ import Resources from './pages/Resources';
 import ResourceDetail from './pages/ResourceDetail';
 import ImageUpload from './pages/ImageUpload';
 import FoodDatabase from './pages/FoodDatabase';
+import Analytics from './pages/Analytics';
+import MealPlanner from './pages/MealPlanner';
 
 function App() {
   return (
@@ -85,6 +87,22 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ImageUpload />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/analytics"
+              element={
+                <ProtectedRoute>
+                  <Analytics />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/meal-planner"
+              element={
+                <ProtectedRoute>
+                  <MealPlanner />
                 </ProtectedRoute>
               }
             />
